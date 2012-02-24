@@ -54,6 +54,9 @@ public class CertificateBuilder extends JniObject {
 	private native void _setNotBefore(String dateTime);
 	private native void _setNotAfter(String dateTime);
 	
+	/*
+	 * TODO _setPublicKey(PublicKeyReference)
+	 */
 	private native void _setPublicKey(String privateKeyPemEncoded);
 	private native void _setPublicKey(byte[] privateKeyDerEncoded);
 	
