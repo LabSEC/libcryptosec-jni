@@ -4,9 +4,6 @@ import java.math.BigInteger;
 
 import jni.JniObject;
 
-/*
- * TODO Rever esquema de get
- */
 public class OpenSSLRevokedCertificate extends JniObject {
 	
 	private native int _init();
@@ -21,21 +18,17 @@ public class OpenSSLRevokedCertificate extends JniObject {
 	
 	public void setCertificateSerialNumber(long certificateSerialNumber) {// throw (BigIntegerException);
 		_setSerialNumber(certificateSerialNumber);
-		this.certificateSerialNumber = BigInteger.valueOf(certificateSerialNumber);		
 	}
 	public void setCertificateSerialNumber(BigInteger certificateSerialNumber) {
 		_setSerialNumber(certificateSerialNumber.toString());
-		this.certificateSerialNumber = certificateSerialNumber;
 	}
 	
 	public void setRevocationDate(String revocationDate) {
 		_setRevocationDate(revocationDate);
-		this.revocationDate = revocationDate;
 	}
 	
 	public void setReasonCode(RevokedCertificateReasonCode reasonCode) {
 		_setReasonCode(reasonCode.toString());
-		this.reasonCode = reasonCode;
 	}
 	
 //	public long getCertificateSerialNumber(){
@@ -57,8 +50,5 @@ public class OpenSSLRevokedCertificate extends JniObject {
 //	std::string getXmlEncoded();
 //	std::string getXmlEncoded(std::string tab);
 //	static std::string reasonCode2Name(RevokedCertificate::ReasonCode reasonCode);
-	
-	protected BigInteger certificateSerialNumber;
-	protected String revocationDate;
-	protected RevokedCertificateReasonCode reasonCode;
+
 }

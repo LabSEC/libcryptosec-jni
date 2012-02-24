@@ -1,8 +1,8 @@
 package jni;
 
-public class JniObject {
+public abstract class JniObject {
 		
-	private native void _destroy(int reference);
+	private native void _delete(int reference);
 	
 	protected int reference;
 	
@@ -14,12 +14,13 @@ public class JniObject {
 		this.reference = reference;
 	}
 	
-	public void destroy(){
-		_destroy(this.reference);
+	public void delete(){
+		_delete(this.reference);
 	}
 	
 	public int getReference(){
 		return this.reference;
 	}
+	
 	
 }
