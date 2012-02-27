@@ -6,8 +6,8 @@ public class OpenSSLRDNSequence extends JniObject {
 
 	private native int _init();
 	private native void _delete();
-	private native int _addEntry(String entryTypeString, String value);
-	private native int _addEntry(String entryTypeString, String[] value);
+	private native void _addEntry(String entryTypeString, String value);
+	private native void _addEntry(String entryTypeString, String[] value);
 
 	public OpenSSLRDNSequence() {
 		this.reference = _init();
