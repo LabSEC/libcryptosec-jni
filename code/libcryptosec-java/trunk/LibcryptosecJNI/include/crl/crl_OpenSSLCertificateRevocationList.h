@@ -23,6 +23,14 @@ JNIEXPORT jstring JNICALL Java_crl_OpenSSLCertificateRevocationList__1getPemEnco
 JNIEXPORT jbyteArray JNICALL Java_crl_OpenSSLCertificateRevocationList__1getDerEncoded
   (JNIEnv *, jobject);
 
+/*
+ * Class:     crl_OpenSSLCertificateRevocationList
+ * Method:    _getDerEncoded
+ * Signature: ()[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_crl_OpenSSLCertificateRevocationList__1delete
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

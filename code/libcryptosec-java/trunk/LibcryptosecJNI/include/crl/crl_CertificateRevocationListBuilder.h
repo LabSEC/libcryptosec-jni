@@ -113,5 +113,6 @@ JNIEXPORT jint JNICALL Java_crl_CertificateRevocationListBuilder__1sign
 
 #ifdef __cplusplus
 }
+
 #endif
 #endif

@@ -129,5 +129,6 @@ JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1sign
 
 #ifdef __cplusplus
 }
+
 #endif
 #endif

@@ -17,5 +17,6 @@ JNIEXPORT void JNICALL Java_jni_JniObject__1delete
 
 #ifdef __cplusplus
 }
+
 #endif
 #endif

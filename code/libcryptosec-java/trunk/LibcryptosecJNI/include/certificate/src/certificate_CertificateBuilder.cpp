@@ -13,18 +13,35 @@ JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1init__(JNIEnv* env,
 
 JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1init__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _pemEncoded)
 {
-	std::string certRequestPemEncoded(env->GetStringUTFChars(_pemEncoded, 0));
-	CertificateBuilder* builder = new CertificateBuilder(certRequestPemEncoded);
-	return (jint)builder;
+	std::string certRequestPemEncoded = Util::jstringToString(env, _pemEncoded);
+
+	try
+	{
+		CertificateBuilder* builder = new CertificateBuilder(certRequestPemEncoded);
+		return (jint)builder;
+	}
+	catch(EncodeException& ex)
+	{
+		Util::throwNewException(env, "EncodeException", ex.getMessage());
+		return 0;
+	}
+
+
 }
 
 JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1init___3B(JNIEnv* env, jobject obj, jbyteArray _derEncoded)
 {
-	jsize size = env->GetArrayLength(_derEncoded);
-	jbyte* jdata = env->GetByteArrayElements(_derEncoded, 0);
-	ByteArray* data = new ByteArray((unsigned char*)jdata, (int)size);
-	CertificateBuilder* builder = new CertificateBuilder(*data);
-	return (jint)builder;
+	ByteArray data = Util::jbytearrayToByteArray(env, _derEncoded);
+	try
+	{
+		CertificateBuilder* builder = new CertificateBuilder(data);
+		return (jint)builder;
+	}
+	catch(EncodeException& ex)
+	{
+		Util::throwNewException(env, "EncodeException", ex.getMessage());
+		return 0;
+	}
 }
 
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSerialNumber__J(JNIEnv* env, jobject obj, jlong _serialNumber)
@@ -35,9 +52,16 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSerialNumber__J(
 
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSerialNumber__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _serialNumber)
 {
-	std::string serialNumber(env->GetStringUTFChars(_serialNumber, 0));
+	std::string serialNumber = Util::jstringToString(env, _serialNumber);
 	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
-	builder->setSerialNumber(BigInteger(serialNumber));
+	try
+	{
+		builder->setSerialNumber(BigInteger(serialNumber));
+	}
+	catch(BigIntegerException& ex)
+	{
+		Util::throwNewException(env, "BigIntegerException", ex.getMessage());
+	}
 }
 
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setVersion(JNIEnv* env, jobject obj, jlong _version)
@@ -63,41 +87,70 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setIssuer(JNIEnv* e
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setNotBefore(JNIEnv* env, jobject obj, jstring _notBefore)
 {
 	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
-	std::string notBefore(env->GetStringUTFChars(_notBefore, 0));
-	DateTime dt(notBefore);
-	builder->setNotBefore(dt);
+	std::string notBefore = Util::jstringToString(env, _notBefore);
+	DateTime dateTime(notBefore);
+	builder->setNotBefore(dateTime);
 }
 
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setNotAfter(JNIEnv* env, jobject obj, jstring _notAfter)
 {
 	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
-	std::string notAfter(env->GetStringUTFChars(_notAfter, 0));
-	DateTime dt(notAfter);
-	builder->setNotAfter(dt);
+	std::string notAfter = Util::jstringToString(env, _notAfter);
+	DateTime dateTime(notAfter);
+	builder->setNotAfter(dateTime);
 }
 
-JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setPublicKey__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _publicKeyPemEncoded)
+JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1setPublicKey__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _publicKeyPemEncoded)
 {
 	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
-	std::string publicKeyPemEncoded(env->GetStringUTFChars(_publicKeyPemEncoded, 0));
-	PublicKey pkey(publicKeyPemEncoded);
-	builder->setPublicKey(pkey);
+	std::string publicKeyPemEncoded = Util::jstringToString(env, _publicKeyPemEncoded);
+	PublicKey* pkey = new PublicKey(publicKeyPemEncoded);
+	builder->setPublicKey(*pkey);
+	return (jint)pkey;
 }
 
-JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setPublicKey___3B(JNIEnv* env, jobject obj, jbyteArray _publicKeyDerEncoded)
+JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1setPublicKey___3B(JNIEnv* env, jobject obj, jbyteArray _publicKeyDerEncoded)
 {
 	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	ByteArray data = Util::jbytearrayToByteArray(env, _publicKeyDerEncoded);
-	PublicKey pkey(data);
-	builder->setPublicKey(pkey);
+	PublicKey* pkey = new PublicKey(data);
+	builder->setPublicKey(*pkey);
+	return (jint)pkey;
+}
+
+JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setPublicKey__I(JNIEnv* env, jobject obj, jint publicKeyReference)
+{
+	PublicKey* pkey = (PublicKey*)publicKeyReference;
+	Util::getInstance<CertificateBuilder*>(env, obj)->setPublicKey(*pkey);
 }
 
 JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1sign(JNIEnv* env, jobject obj, jint _keyReference, jstring _messageDigestAlgorithm)
 {
-	std::string messageDigestAlgorithm(env->GetStringUTFChars(_messageDigestAlgorithm, 0));
+	std::string messageDigestAlgorithm = Util::jstringToString(env, _messageDigestAlgorithm);
 	MessageDigest::Algorithm algorithm = Util::stringToMessageDigestAlgorithm(messageDigestAlgorithm);
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+
 	PrivateKey* pkey = (PrivateKey*)_keyReference;
-	Certificate* signedCert = builder->sign(*pkey, algorithm);
-	return (jint)signedCert;
+
+	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+
+	try
+	{
+		Certificate* signedCert = builder->sign(*pkey, algorithm);
+		return (jint)signedCert;
+	}
+	catch(CertificationException& ex)
+	{
+		Util::throwNewException(env, "CertificationException", ex.getMessage());
+		return 0;
+	}
+	catch(AsymmetricKeyException& ex)
+	{
+		Util::throwNewException(env, "AsymmetricException", ex.getMessage());
+		return 0;
+	}
+}
+
+JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1delete(JNIEnv *env, jobject obj)
+{
+	Util::deleteInstance<CertificateBuilder*>(env, obj);
 }
