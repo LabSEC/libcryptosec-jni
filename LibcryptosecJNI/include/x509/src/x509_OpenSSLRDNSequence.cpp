@@ -26,3 +26,7 @@ void Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2_3Ljava_lang_St
 	sequence->addEntry(entryType, entryValues);
 }
 
+void Java_x509_OpenSSLRDNSequence__1delete(JNIEnv* env, jobject obj)
+{
+	Util::deleteInstance<RDNSequence*>(env, obj);
+}

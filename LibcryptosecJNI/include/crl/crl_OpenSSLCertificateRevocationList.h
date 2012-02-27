@@ -28,7 +28,7 @@ JNIEXPORT jbyteArray JNICALL Java_crl_OpenSSLCertificateRevocationList__1getDerE
  * Method:    _getDerEncoded
  * Signature: ()[B
  */
-JNIEXPORT jbyteArray JNICALL Java_crl_OpenSSLCertificateRevocationList__1delete
+JNIEXPORT void JNICALL Java_crl_OpenSSLCertificateRevocationList__1delete
   (JNIEnv *, jobject);
 
 #ifdef __cplusplus

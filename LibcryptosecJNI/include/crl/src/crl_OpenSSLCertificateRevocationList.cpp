@@ -32,7 +32,7 @@ jbyteArray Java_crl_OpenSSLCertificateRevocationList__1getDerEncoded(JNIEnv* env
 	return Util::byteArrayTojbytearray(env, data);
 }
 
-jbyteArray Java_crl_OpenSSLCertificateRevocationList__1delete(JNIEnv* env, jobject obj)
+void Java_crl_OpenSSLCertificateRevocationList__1delete(JNIEnv* env, jobject obj)
 {
 	Util::deleteInstance<CertificateRevocationList*>(env, obj);
 }
