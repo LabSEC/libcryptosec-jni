@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     certificate_OpenSSLCertificate
+ * Method:    _delete
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_certificate_OpenSSLCertificate__1delete
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     certificate_OpenSSLCertificate
  * Method:    _getPemEncoded
  * Signature: ()Ljava/lang/String;
  */

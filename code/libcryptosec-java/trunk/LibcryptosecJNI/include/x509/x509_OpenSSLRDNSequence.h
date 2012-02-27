@@ -17,10 +17,18 @@ JNIEXPORT jint JNICALL Java_x509_OpenSSLRDNSequence__1init
 
 /*
  * Class:     x509_OpenSSLRDNSequence
+ * Method:    _delete
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_x509_OpenSSLRDNSequence__1delete
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     x509_OpenSSLRDNSequence
  * Method:    _addEntry
  * Signature: (Ljava/lang/String;Ljava/lang/String;)I
  */
-JNIEXPORT void JNICALL Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2Ljava_lang_String_2
+JNIEXPORT jint JNICALL Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2Ljava_lang_String_2
   (JNIEnv *, jobject, jstring, jstring);
 
 /*
@@ -28,11 +36,10 @@ JNIEXPORT void JNICALL Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_Strin
  * Method:    _addEntry
  * Signature: (Ljava/lang/String;[Ljava/lang/String;)I
  */
-JNIEXPORT void JNICALL Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2_3Ljava_lang_String_2
+JNIEXPORT jint JNICALL Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2_3Ljava_lang_String_2
   (JNIEnv *, jobject, jstring, jobjectArray);
 
 #ifdef __cplusplus
 }
-
 #endif
 #endif

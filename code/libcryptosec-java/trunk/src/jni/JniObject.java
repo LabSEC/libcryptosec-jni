@@ -14,13 +14,10 @@ public abstract class JniObject {
 		this.reference = reference;
 	}
 	
-	public void delete(){
-		_delete(this.reference);
-	}
+	public abstract void delete();
 	
 	public int getReference(){
 		return this.reference;
 	}
-	
 	
 }

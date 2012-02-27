@@ -17,6 +17,14 @@ JNIEXPORT jint JNICALL Java_crl_OpenSSLRevokedCertificate__1init
 
 /*
  * Class:     crl_OpenSSLRevokedCertificate
+ * Method:    _delete
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_crl_OpenSSLRevokedCertificate__1delete
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     crl_OpenSSLRevokedCertificate
  * Method:    _setSerialNumber
  * Signature: (J)V
  */

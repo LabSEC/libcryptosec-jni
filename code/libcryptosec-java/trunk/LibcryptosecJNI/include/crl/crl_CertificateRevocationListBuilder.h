@@ -33,6 +33,14 @@ JNIEXPORT jint JNICALL Java_crl_CertificateRevocationListBuilder__1init___3B
 
 /*
  * Class:     crl_CertificateRevocationListBuilder
+ * Method:    _delete
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_crl_CertificateRevocationListBuilder__1delete
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     crl_CertificateRevocationListBuilder
  * Method:    _setSerialNumber
  * Signature: (J)V
  */
@@ -58,7 +66,7 @@ JNIEXPORT void JNICALL Java_crl_CertificateRevocationListBuilder__1setVersion
 /*
  * Class:     crl_CertificateRevocationListBuilder
  * Method:    _setIssuer
- * Signature: (Ljava/lang/String;)V
+ * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_crl_CertificateRevocationListBuilder__1setIssuer
   (JNIEnv *, jobject, jint);

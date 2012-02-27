@@ -4,7 +4,7 @@ import engine.DynamicEngine;
 import engine.EngineCommand;
 import jni.JniObject;
 
-public class OpenSSLKeyFactory extends JniObject {
+public class OpenSSLKeyFactory {
 
 	static OpenSSLKeyFactory instanece = null;
 	
@@ -27,4 +27,5 @@ public class OpenSSLKeyFactory extends JniObject {
 	{
 		return new OpenSSLKeyPair(this.engine, keyId);
 	}
+
 }

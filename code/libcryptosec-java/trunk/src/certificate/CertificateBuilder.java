@@ -28,6 +28,11 @@ public class CertificateBuilder extends JniObject {
 	private native int _init(byte[] derEncoded);
 	
 	/*
+	 * Destructor
+	 */
+	private native void _delete();
+	
+	/*
 	 * Set Serial Number
 	 */
 	private native void _setSerialNumber(long serial);
@@ -55,10 +60,16 @@ public class CertificateBuilder extends JniObject {
 	private native void _setNotAfter(String dateTime);
 	
 	/*
-	 * TODO _setPublicKey(PublicKeyReference)
+	 * Builds a Libcryptosec PublicKey object with encodedKey argument, sets it as 
+	 * certificate's public key and returns it's reference, to be destroyed after it's usage.
 	 */
-	private native void _setPublicKey(String privateKeyPemEncoded);
-	private native void _setPublicKey(byte[] privateKeyDerEncoded);
+	private native int _setPublicKey(String publicKeyPemEncoded);
+	private native int _setPublicKey(byte[] publicKeyDerEncoded);
+	
+	/*
+	 * Sets the referenced Libcryptosec's PublicKey object as certificate's public key.
+	 */
+	private native void _setPublicKey(int publicKeyReference);
 	
 	/*
 	 * Returns a reference to an Libcryptosec Certificate object
@@ -80,6 +91,14 @@ public class CertificateBuilder extends JniObject {
 	public CertificateBuilder(byte[] derEncoded) //throw (EncodeException)
 	{
 		this.reference = _init(derEncoded);
+	}
+	
+	/*
+	 * Destructor
+	 */
+	@Override
+	public void delete() {
+		_delete();
 	}
 	
 	/*
@@ -143,7 +162,7 @@ public class CertificateBuilder extends JniObject {
 	
 //	void setExtensions(X509Extension extension)
 //	{
-//		//TODO set extensions
+//		
 //	}
 //	void addExtension(X509Extension extension) {// throw (CertificationException);
 //	

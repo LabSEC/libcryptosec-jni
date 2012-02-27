@@ -7,6 +7,8 @@ import jni.JniObject;
 public class OpenSSLRevokedCertificate extends JniObject {
 	
 	private native int _init();
+	private native void _delete();
+	
 	private native void _setSerialNumber(long certificateSerialNumber);
 	private native void _setSerialNumber(String certificateSerialNumber);
 	private native void _setRevocationDate(String revocationDate);
@@ -29,6 +31,11 @@ public class OpenSSLRevokedCertificate extends JniObject {
 	
 	public void setReasonCode(RevokedCertificateReasonCode reasonCode) {
 		_setReasonCode(reasonCode.toString());
+	}
+	
+	@Override
+	public void delete() {
+		_delete();
 	}
 	
 //	public long getCertificateSerialNumber(){

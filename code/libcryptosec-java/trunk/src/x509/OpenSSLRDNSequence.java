@@ -5,6 +5,7 @@ import jni.JniObject;
 public class OpenSSLRDNSequence extends JniObject {
 
 	private native int _init();
+	private native void _delete();
 	private native int _addEntry(String entryTypeString, String value);
 	private native int _addEntry(String entryTypeString, String[] value);
 
@@ -18,6 +19,11 @@ public class OpenSSLRDNSequence extends JniObject {
 	
 	public void addEntry(RDNSequenceEntryType type, String[] values) {
 		_addEntry(type.toString(), values);
+	}
+	
+	@Override
+	public void delete() {
+		_delete();
 	}
 
 //	String[] getEntries(RDNSequenceEntryType type) {
