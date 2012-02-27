@@ -9,11 +9,19 @@ extern "C" {
 #endif
 /*
  * Class:     keys_OpenSSLKeyPair
- * Method:    _loadKeyPair
+ * Method:    _init
  * Signature: (ILjava/lang/String;)I
  */
-JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1loadKeyPair
+JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1init
   (JNIEnv *, jobject, jint, jstring);
+
+/*
+ * Class:     keys_OpenSSLKeyPair
+ * Method:    _delete
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_keys_OpenSSLKeyPair__1delete
+  (JNIEnv *, jobject);
 
 /*
  * Class:     keys_OpenSSLKeyPair

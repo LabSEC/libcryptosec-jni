@@ -33,8 +33,16 @@ JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1init___3B
 
 /*
  * Class:     certificate_CertificateBuilder
+ * Method:    _delete
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1delete
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     certificate_CertificateBuilder
  * Method:    _setSerialNumber
- * Signature: (J)I
+ * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSerialNumber__J
   (JNIEnv *, jobject, jlong);
@@ -42,7 +50,7 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSerialNumber__J
 /*
  * Class:     certificate_CertificateBuilder
  * Method:    _setSerialNumber
- * Signature: (Ljava/lang/String;)I
+ * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSerialNumber__Ljava_lang_String_2
   (JNIEnv *, jobject, jstring);
@@ -50,7 +58,7 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSerialNumber__Lj
 /*
  * Class:     certificate_CertificateBuilder
  * Method:    _setVersion
- * Signature: (J)I
+ * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setVersion
   (JNIEnv *, jobject, jlong);
@@ -58,7 +66,7 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setVersion
 /*
  * Class:     certificate_CertificateBuilder
  * Method:    _setSubject
- * Signature: (Ljava/lang/String;)I
+ * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSubject
   (JNIEnv *, jobject, jint);
@@ -66,7 +74,7 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setSubject
 /*
  * Class:     certificate_CertificateBuilder
  * Method:    _setIssuer
- * Signature: (Ljava/lang/String;)I
+ * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setIssuer
   (JNIEnv *, jobject, jint);
@@ -74,7 +82,7 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setIssuer
 /*
  * Class:     certificate_CertificateBuilder
  * Method:    _setNotBefore
- * Signature: (Ljava/lang/String;)I
+ * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setNotBefore
   (JNIEnv *, jobject, jstring);
@@ -82,33 +90,17 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setNotBefore
 /*
  * Class:     certificate_CertificateBuilder
  * Method:    _setNotAfter
- * Signature: (Ljava/lang/String;)I
+ * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setNotAfter
   (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     certificate_CertificateBuilder
- * Method:    _addExtension
- * Signature: (ZLjava/lang/String;[B)I
- */
-JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1addExtension
-  (JNIEnv *, jobject, jboolean, jstring, jbyteArray);
-
-/*
- * Class:     certificate_CertificateBuilder
- * Method:    _removeExtension
- * Signature: ()I
- */
-JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1removeExtension
-  (JNIEnv *, jobject);
-
-/*
- * Class:     certificate_CertificateBuilder
  * Method:    _setPublicKey
  * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setPublicKey__Ljava_lang_String_2
+JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1setPublicKey__Ljava_lang_String_2
   (JNIEnv *, jobject, jstring);
 
 /*
@@ -116,13 +108,21 @@ JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setPublicKey__Ljava
  * Method:    _setPublicKey
  * Signature: ([B)I
  */
-JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setPublicKey___3B
+JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1setPublicKey___3B
   (JNIEnv *, jobject, jbyteArray);
 
 /*
  * Class:     certificate_CertificateBuilder
+ * Method:    _setPublicKey
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_certificate_CertificateBuilder__1setPublicKey__I
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     certificate_CertificateBuilder
  * Method:    _sign
- * Signature: (ILjava/lang/String;)[B
+ * Signature: (ILjava/lang/String;)I
  */
 JNIEXPORT jint JNICALL Java_certificate_CertificateBuilder__1sign
   (JNIEnv *, jobject, jint, jstring);

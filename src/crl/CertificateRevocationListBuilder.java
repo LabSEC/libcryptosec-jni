@@ -19,6 +19,11 @@ public class CertificateRevocationListBuilder extends JniObject {
 	private native int _init(String pemEncoded);
 	private native int _init(byte[] derEncoded);
 	
+	/*
+	 * Destructor
+	 */
+	private native void _delete();
+	
 	private native void _setSerialNumber(long serial);
 	private native void _setSerialNumber(String serial);
 	private native void _setVersion(long version);
@@ -49,6 +54,10 @@ public class CertificateRevocationListBuilder extends JniObject {
 	 */
 	private native int _sign(int privateKeyReference, String messageDigestAlgorithm);
 	
+	
+	/*
+	 * Java Constructors
+	 */
 	public CertificateRevocationListBuilder()
 	{
 		this.reference = _init();
@@ -61,6 +70,13 @@ public class CertificateRevocationListBuilder extends JniObject {
 	public CertificateRevocationListBuilder(byte[] derEncoded){//	throw (EncodeException){}
 		this.reference = _init(derEncoded);
 	}	
+	
+	/*
+	 * Destructro
+	 */
+	public void delete() {
+		_delete();
+	}
 	
 	/*
 	 * Serial Number

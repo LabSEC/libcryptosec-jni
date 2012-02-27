@@ -7,7 +7,7 @@ public enum MessageDigestAlgorithm {
 	private String _algorithmName;
 
 	MessageDigestAlgorithm(String algorithmName){
-		_algorithmName = algorithmName;
+		this._algorithmName = algorithmName;
 	}
 
 	public String getName() {
