@@ -1,4 +1,4 @@
-#include "engine/engine_DynamicEngine.h"
+#include "engine/br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine.h"
 #include <string>
 #include <vector>
 #include <jni.h>
@@ -43,7 +43,7 @@ std::vector<std::pair<std::string, std::string> > convertCommandArray(JNIEnv* en
 	return commands;
 }
 
-jint Java_engine_DynamicEngine__1init(JNIEnv* env, jobject obj, jstring _enginePath, jstring _engineId, jobjectArray _commands)
+jint Java_br_ufsc_labsec_libcryptosec_engine_DynamicEngine__1init(JNIEnv* env, jobject obj, jstring _enginePath, jstring _engineId, jobjectArray _commands)
 {
 	/*
 	 * Conversão
@@ -57,7 +57,7 @@ jint Java_engine_DynamicEngine__1init(JNIEnv* env, jobject obj, jstring _engineP
 
 
 
-void Java_engine_DynamicEngine__1delete(JNIEnv* env, jobject obj)
+void Java_br_ufsc_labsec_libcryptosec_engine_DynamicEngine__1delete(JNIEnv* env, jobject obj)
 {
 	Util::deleteInstance<DynamicEngine*>(env, obj);
 }

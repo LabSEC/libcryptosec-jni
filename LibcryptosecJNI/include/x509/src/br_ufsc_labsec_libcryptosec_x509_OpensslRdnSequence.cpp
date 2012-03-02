@@ -1,14 +1,14 @@
-#include "x509/x509_OpenSSLRDNSequence.h"
+#include "x509/br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence.h"
 #include <jni.h>
 #include <libcryptosec/certificate/RDNSequence.h>
 #include "util/Util.h"
 
-jint Java_x509_OpenSSLRDNSequence__1init(JNIEnv* env, jobject obj)
+jint Java_br_ufsc_labsec_libcryptosec_x509_OpensslRDNSequence__1init(JNIEnv* env, jobject obj)
 {
 	return (jint) new RDNSequence();
 }
 
-void Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _entryTypeString, jstring _entryValue)
+void Java_br_ufsc_labsec_libcryptosec_x509_OpensslRDNSequence__1addEntry__Ljava_lang_String_2Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _entryTypeString, jstring _entryValue)
 {
 	RDNSequence* sequence = Util::getInstance<RDNSequence*>(env, obj);
 	std::string entryTypeString = Util::jstringToString(env, _entryTypeString);
@@ -17,7 +17,7 @@ void Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2Ljava_lang_Stri
 	sequence->addEntry(entryType, entryValue);
 }
 
-void Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2_3Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _entryTypeString, jobjectArray _entryValues)
+void Java_br_ufsc_labsec_libcryptosec_x509_OpensslRDNSequence__1addEntry__Ljava_lang_String_2_3Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _entryTypeString, jobjectArray _entryValues)
 {
 	RDNSequence* sequence = Util::getInstance<RDNSequence*>(env, obj);
 	std::string entryTypeString = Util::jstringToString(env, _entryTypeString);
@@ -26,7 +26,7 @@ void Java_x509_OpenSSLRDNSequence__1addEntry__Ljava_lang_String_2_3Ljava_lang_St
 	sequence->addEntry(entryType, entryValues);
 }
 
-void Java_x509_OpenSSLRDNSequence__1delete(JNIEnv* env, jobject obj)
+void Java_br_ufsc_labsec_libcryptosec_x509_OpensslRDNSequence__1delete(JNIEnv* env, jobject obj)
 {
 	Util::deleteInstance<RDNSequence*>(env, obj);
 }

@@ -1,10 +1,10 @@
-#include "keys/keys_OpenSSLKeyPair.h"
+#include "keys/br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair.h"
 #include <jni.h>
 #include <libcryptosec/KeyPair.h>
 #include <libcryptosec/DynamicEngine.h>
 #include "util/Util.h"
 
-JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1init(JNIEnv* env, jobject obj, jint _engineReference, jstring _keyId)
+JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1init(JNIEnv* env, jobject obj, jint _engineReference, jstring _keyId)
 {
 	std::string keyId(env->GetStringUTFChars(_keyId, 0));
 	DynamicEngine* engine = (DynamicEngine*)_engineReference;
@@ -22,7 +22,7 @@ JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1init(JNIEnv* env, jobject obj,
 
 }
 
-JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1getPublicKey(JNIEnv* env, jobject obj)
+JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1getPublicKey(JNIEnv* env, jobject obj)
 {
 	try
 	{
@@ -40,7 +40,7 @@ JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1getPublicKey(JNIEnv* env, jobj
 	}
 }
 
-JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1getPrivateKey(JNIEnv* env, jobject obj)
+JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1getPrivateKey(JNIEnv* env, jobject obj)
 {
 	try
 	{
@@ -58,7 +58,7 @@ JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1getPrivateKey(JNIEnv* env, job
 	}
 }
 
-JNIEXPORT void JNICALL Java_keys_OpenSSLKeyPair__1delete(JNIEnv* env, jobject obj)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1delete(JNIEnv* env, jobject obj)
 {
 	Util::deleteInstance<KeyPair*>(env, obj);
 }
