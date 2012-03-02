@@ -1,9 +1,9 @@
-#include "certificate/certificate_OpenSSLCertificate.h"
+#include "certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.h""
 #include <jni.h>
 #include <libcryptosec/certificate/Certificate.h>
 #include "util/Util.h"
 
-JNIEXPORT jstring JNICALL Java_certificate_OpenSSLCertificate__1getPemEncoded(JNIEnv* env, jobject obj)
+JNIEXPORT jstring JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate__1getPemEncoded(JNIEnv* env, jobject obj)
 {
 	Certificate* certificate = Util::getInstance<Certificate*>(env, obj);
 	std::string pemEncoded;
@@ -24,7 +24,7 @@ JNIEXPORT jstring JNICALL Java_certificate_OpenSSLCertificate__1getPemEncoded(JN
 }
 
 
-JNIEXPORT jbyteArray JNICALL Java_certificate_OpenSSLCertificate__1getDerEncoded(JNIEnv* env, jobject obj)
+JNIEXPORT jbyteArray JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate__1getDerEncoded(JNIEnv* env, jobject obj)
 {
 	Certificate* certificate = Util::getInstance<Certificate*>(env, obj);
 	ByteArray data;
@@ -39,7 +39,7 @@ JNIEXPORT jbyteArray JNICALL Java_certificate_OpenSSLCertificate__1getDerEncoded
 	return Util::byteArrayTojbytearray(env, data);
 }
 
-JNIEXPORT void JNICALL Java_certificate_OpenSSLCertificate__1delete(JNIEnv* env, jobject obj)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate__1delete(JNIEnv* env, jobject obj)
 {
 	Util::deleteInstance<Certificate*>(env, obj);
 }
