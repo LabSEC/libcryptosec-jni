@@ -51,8 +51,18 @@ jint Java_br_ufsc_labsec_libcryptosec_engine_DynamicEngine__1init(JNIEnv* env, j
 	std::string enginePath(env->GetStringUTFChars(_enginePath, 0));
 	std::string engineId(env->GetStringUTFChars(_engineId, 0));
 	std::vector<std::pair<std::string, std::string> > commands = convertCommandArray(env, _commands);
-	DynamicEngine* engine = new DynamicEngine(enginePath, engineId, commands);
-	return (int)engine;
+
+	try
+	{
+		DynamicEngine* engine = 0;
+		DynamicEngine* engine = new DynamicEngine(enginePath, engineId, commands);
+		return (int)engine;
+	}
+	catch(EngineException& ex)
+	{
+		Util::throwNewException(env, "DynamicEngine", ex.getMessage());
+		return 0;
+	}
 }
 
 

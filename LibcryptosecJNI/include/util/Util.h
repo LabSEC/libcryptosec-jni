@@ -108,6 +108,11 @@ public:
 		return objects;
 	}
 
+	static MessageDigest::Algorithm jstringToMessageDigestAlgorithm(JNIEnv* env, jstring _algName)
+	{
+		return stringToMessageDigestAlgorithm(jstringToString(env, _algName));
+	}
+
 	static MessageDigest::Algorithm stringToMessageDigestAlgorithm(std::string algName)
 		throw (EnumConversionException)
 	{
@@ -133,6 +138,11 @@ public:
 			throw new EnumConversionException("String \""+ algName +"\" doesn't name a MessageDigest::Algorithm");
 	}
 
+	static RevokedCertificate::ReasonCode jstringToRevokedCertificateReasonCode(JNIEnv* env, jstring _algName)
+	{
+		return stringToRevokedCertificateReasonCode(jstringToString(env, _algName));
+	}
+
 	static RevokedCertificate::ReasonCode stringToRevokedCertificateReasonCode(std::string reasonCode)
 		throw (EnumConversionException)
 	{
@@ -156,6 +166,11 @@ public:
 			return RevokedCertificate::UNSPECIFIED;
 		else
 			throw new EnumConversionException("String \""+ reasonCode +"\" doesn't name a RevokedCertificate::ReasonCode");
+	}
+
+	static RDNSequence::EntryType jstringToRDNSequenceEntryType(JNIEnv* env, jstring _algName)
+	{
+		return stringToRDNSequenceEntryType(jstringToString(env, _algName));
 	}
 
 	static RDNSequence::EntryType stringToRDNSequenceEntryType(std::string entryType)
