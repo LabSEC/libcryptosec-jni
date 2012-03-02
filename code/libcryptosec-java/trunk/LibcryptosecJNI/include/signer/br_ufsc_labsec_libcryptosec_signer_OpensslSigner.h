@@ -10,18 +10,18 @@ extern "C" {
 /*
  * Class:     br_ufsc_labsec_libcryptosec_signer_OpensslSigner
  * Method:    _sign
- * Signature: (Lbr/ufsc/labsec/libcryptosec/keys/OpensslPrivateKey;[BLbr/ufsc/labsec/libcryptosec/digester/OpensslMessageDigestAlgorithm;)[B
+ * Signature: (I[BLjava/lang/String;)[B
  */
 JNIEXPORT jbyteArray JNICALL Java_br_ufsc_labsec_libcryptosec_signer_OpensslSigner__1sign
-  (JNIEnv *, jclass, jobject, jbyteArray, jobject);
+  (JNIEnv *, jclass, jint, jbyteArray, jstring);
 
 /*
  * Class:     br_ufsc_labsec_libcryptosec_signer_OpensslSigner
  * Method:    _verify
- * Signature: (Lbr/ufsc/labsec/libcryptosec/keys/OpensslPublicKey;[B[BLbr/ufsc/labsec/libcryptosec/digester/OpensslMessageDigestAlgorithm;)Z
+ * Signature: (I[B[BLjava/lang/String;)Z
  */
 JNIEXPORT jboolean JNICALL Java_br_ufsc_labsec_libcryptosec_signer_OpensslSigner__1verify
-  (JNIEnv *, jclass, jobject, jbyteArray, jbyteArray, jobject);
+  (JNIEnv *, jclass, jint, jbyteArray, jbyteArray, jstring);
 
 #ifdef __cplusplus
 }
