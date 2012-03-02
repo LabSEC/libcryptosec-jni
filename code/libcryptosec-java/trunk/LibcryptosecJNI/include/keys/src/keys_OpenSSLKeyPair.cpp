@@ -4,15 +4,7 @@
 #include <libcryptosec/DynamicEngine.h>
 #include "util/Util.h"
 
-KeyPair* getInstance(JNIEnv* env, jobject obj)
-{
-	jclass obj_class = env->GetObjectClass(obj);
-	jfieldID fid = env->GetFieldID(obj_class, "reference", "I");
-	void* keyPairReference = (void*)env->GetIntField(obj, fid);
-	return (KeyPair*) keyPairReference;
-}
-
-JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1loadKeyPair(JNIEnv* env, jobject obj, jint _engineReference, jstring _keyId)
+JNIEXPORT jint JNICALL Java_keys_OpenSSLKeyPair__1init(JNIEnv* env, jobject obj, jint _engineReference, jstring _keyId)
 {
 	std::string keyId(env->GetStringUTFChars(_keyId, 0));
 	DynamicEngine* engine = (DynamicEngine*)_engineReference;

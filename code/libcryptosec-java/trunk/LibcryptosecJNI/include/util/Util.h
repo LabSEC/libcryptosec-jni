@@ -33,10 +33,14 @@ public:
 	{
 		std::string exceptionPath = "exceptions/" + name;
 		jclass cls = env->FindClass(exceptionPath.c_str());
-		/* if cls is NULL, an exception has already been thrown */
-		if (cls != NULL) {
+		if (cls == NULL) {
+			std::cout << "Class not found" << msg << std::endl;
+			return;
+		}
+		else if (cls != NULL) {
 			env->ThrowNew(cls, msg.c_str());
 		}
+
 		/* free the local ref */
 		env->DeleteLocalRef(cls);
 	}
