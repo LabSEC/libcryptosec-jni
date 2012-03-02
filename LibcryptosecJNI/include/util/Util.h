@@ -31,10 +31,10 @@ public:
 
 	static void throwNewException(JNIEnv* env, std::string name, std::string msg)
 	{
-		std::string exceptionPath = "exceptions/" + name;
+		std::string exceptionPath = "br/ufsc/labsec/libcryptosec/exceptions/" + name;
 		jclass cls = env->FindClass(exceptionPath.c_str());
 		if (cls == NULL) {
-			std::cout << "Class not found" << msg << std::endl;
+			std::cerr << "Util::throwNewException: Exception class " + exceptionPath + " not found" << std::endl;
 			return;
 		}
 		else if (cls != NULL) {
