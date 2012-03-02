@@ -1,4 +1,4 @@
-package br.ufsc.labsec.libcryptosec.signer;
+package br.ufsc.labsec.libcryptosec.test;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import br.ufsc.labsec.libcryptosec.digester.OpensslMessageDigestAlgorithm;
 import br.ufsc.labsec.libcryptosec.exceptions.SignerException;
-import br.ufsc.labsec.libcryptosec.test.LibcryptosecJavaTest;
+import br.ufsc.labsec.libcryptosec.signer.OpensslSigner;
 
 public class OpensslSignerTest extends LibcryptosecJavaTest {
 
