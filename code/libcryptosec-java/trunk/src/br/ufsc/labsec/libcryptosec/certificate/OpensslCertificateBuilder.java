@@ -167,59 +167,100 @@ public class OpensslCertificateBuilder extends JniObject {
 //	{
 //		
 //	}
-//	void addExtension(X509Extension extension) {// throw (CertificationException);
-//	
-//}
-//void addExtensions(X509Extension extension) {//throw (CertificationException);
-//	
-//}
-//
-//void replaceExtension(X509Extension extension) {//throw (CertificationException);
-//	
-//}
-//
-//std::vector<Extension *> removeExtension(Extension::Name extensionName){// throw (CertificationException);
-//	
-//}
-//
-//std::vector<Extension *> removeExtension(ObjectIdentifier extOID) {//throw (CertificationException);
-//	
-//}
 	
-//	BigInteger getSerialNumberBigInt() throw (CertificationException, BigIntegerException);
-	
-	
-//	
-//	public long getSerialNumber() { //throw (CertificationException) {
-//		
+//	void addExtension(X509Extension extension) throws CertificationException
+//	{
+//
 //	}
 	
-//	MessageDigestAlgorithm getMessageDigestAlgorithm() { // throw (MessageDigestException)
-//		
-//	}
+//	void addExtensions(X509Extension extension) throws CertificationException
+//	{
 //	
-//	
-//	long getVersion() {// throw (CertificationException);
-//		
 //	}
-	
 
+	
+//	void replaceExtension(X509Extension extension) throws CertificationException
+//	{
 //	
-//	PublicKey getPublicKey() {//throw (CertificationException, AsymmetricKeyException);
-//		
 //	}
+	
+//	std::vector<Extension *> removeExtension(Extension::Name extensionName) throws CertificationException
+//	{
+//
+//	}
+
+//	std::vector<Extension *> removeExtension(ObjectIdentifier extOID) throws CertificationException
+//	{
 //	
-//	byte[] getPublicKeyInfo() {// throw (CertificationException);
+//	}
+	
+	/*
+	 * GETTERS
+	 */
+	
+//	BigInteger getSerialNumberBigInt() throws CertificationException, BigIntegerException
+//	{
 //		
 //	}
 	
+//	public long getSerialNumber() throws CertificationException 
+//	{
+//		
+//	}
 	
-//	DateTime getNotBefore();
-//	DateTime getNotAfter();
-//	RDNSequence getIssuer();
-//	RDNSequence getSubject();
-//	std::vector<Extension*> getExtension(Extension::Name extensionName);
-//	std::vector<Extension*> getExtensions();
-//	std::vector<Extension *> getUnknownExtensions();
+//	MessageDigestAlgorithm getMessageDigestAlgorithm() throws MessageDigestException
+//	{
+//		
+//	}
+
+//	long getVersion() throws CertificationException
+//	{
+//	
+//	}
+	
+//	PublicKey getPublicKey() throws CertificationException, AsymmetricKeyException
+//	{
+//		
+//	}
+
+//	byte[] getPublicKeyInfo() throws CertificationException
+//	{
+//		
+//	}
+	
+//	DateTime getNotBefore()
+//	{
+//		
+//	}
+	
+//	DateTime getNotAfter()
+//	{
+//		
+//	}
+	
+//	RDNSequence getIssuer()
+//	{
+//		
+//	}
+	
+//	RDNSequence getSubject()
+//	{
+//		
+//	}
+	
+//	std::vector<Extension*> getExtension(Extension::Name extensionName)
+//	{
+//		
+//	}
+	
+//	std::vector<Extension*> getExtensions()
+//	{
+//		
+//	}
+	
+//	std::vector<Extension *> getUnknownExtensions()
+//	{
+//		
+//	}
 	
 }
