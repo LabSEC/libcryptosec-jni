@@ -8,7 +8,6 @@ import java.util.Date;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-import br.ufsc.labsec.libcryptosec.certificate.OpensslCertificate;
 import br.ufsc.labsec.libcryptosec.engine.OpensslEngineCommand;
 import br.ufsc.labsec.libcryptosec.keys.OpensslKeyFactory;
 import br.ufsc.labsec.libcryptosec.keys.OpensslKeyPair;
@@ -16,9 +15,6 @@ import br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey;
 import br.ufsc.labsec.libcryptosec.keys.OpensslPublicKey;
 import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequence;
 import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequenceEntryType;
-
-
-
 
 public class LibcryptosecJavaTest {
 	

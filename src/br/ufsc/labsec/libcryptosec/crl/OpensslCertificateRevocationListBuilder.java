@@ -9,10 +9,6 @@ import br.ufsc.labsec.libcryptosec.exceptions.EncodeException;
 import br.ufsc.labsec.libcryptosec.jni.JniObject;
 import br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey;
 import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequence;
-import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequenceEntryType;
-
-
-
 
 public class OpensslCertificateRevocationListBuilder extends JniObject {
 
