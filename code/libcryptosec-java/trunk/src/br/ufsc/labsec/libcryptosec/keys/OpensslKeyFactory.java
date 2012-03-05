@@ -3,7 +3,6 @@ package br.ufsc.labsec.libcryptosec.keys;
 import br.ufsc.labsec.libcryptosec.engine.OpensslDynamicEngine;
 import br.ufsc.labsec.libcryptosec.engine.OpensslEngineCommand;
 import br.ufsc.labsec.libcryptosec.exceptions.EngineException;
-import br.ufsc.labsec.libcryptosec.jni.JniObject;
 
 public class OpensslKeyFactory {
 

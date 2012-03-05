@@ -2,11 +2,6 @@ package br.ufsc.labsec.libcryptosec.certificate;
 
 import java.math.BigInteger;
 import java.security.PublicKey;
-import java.security.cert.Certificate;
-import java.security.cert.X509Certificate;
-import java.security.cert.X509Extension;
-
-import javax.naming.ldap.Rdn;
 
 import br.ufsc.labsec.libcryptosec.digester.OpensslMessageDigestAlgorithm;
 import br.ufsc.labsec.libcryptosec.exceptions.AsymmetricKeyException;
@@ -17,9 +12,6 @@ import br.ufsc.labsec.libcryptosec.jni.JniObject;
 import br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey;
 import br.ufsc.labsec.libcryptosec.keys.OpensslPublicKey;
 import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequence;
-
-
-
 
 /*
  * 
