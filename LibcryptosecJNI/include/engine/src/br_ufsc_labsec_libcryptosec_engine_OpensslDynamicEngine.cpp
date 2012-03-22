@@ -60,7 +60,7 @@ jint Java_br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine__1init(JNIEnv*
 	}
 	catch(EngineException& ex)
 	{
-		Util::throwNewException(env, "DynamicEngine", ex.getMessage());
+		Util::throwNewException(env, "EngineException", ex.getMessage());
 		return 0;
 	}
 }
