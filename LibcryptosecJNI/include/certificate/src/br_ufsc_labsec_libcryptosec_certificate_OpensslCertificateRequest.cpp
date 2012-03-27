@@ -9,15 +9,31 @@ void Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1de
 
 jint Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1init__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _pemEncoded)
 {
-	std::string pemEncoded = Util::jstringToString(env, _pemEncoded);
-	CertificateRequest* request = new CertificateRequest(pemEncoded);
+	try{
+		std::string pemEncoded = Util::jstringToString(env, _pemEncoded);
+		CertificateRequest* request = new CertificateRequest(pemEncoded);
+	}
+	catch(EncodeException& ex)
+	{
+		Util::throwNewException(env, "EncodeException", ex.getMessage());
+		return 0;
+	}
+
 	return (jint) request;
 }
 
 jint Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1init___3B(JNIEnv* env, jobject obj, jbyteArray _derEncoded)
 {
-	ByteArray derEncoded = Util::jbytearrayToByteArray(env, _derEncoded);
-	CertificateRequest* request = new CertificateRequest(derEncoded);
+	try{
+		ByteArray derEncoded = Util::jbytearrayToByteArray(env, _derEncoded);
+		CertificateRequest* request = new CertificateRequest(derEncoded);
+	}
+	catch(EncodeException& ex)
+	{
+		Util::throwNewException(env, "EncodeException", ex.getMessage());
+		return 0;
+	}
+
 	return (jint) request;
 }
 
