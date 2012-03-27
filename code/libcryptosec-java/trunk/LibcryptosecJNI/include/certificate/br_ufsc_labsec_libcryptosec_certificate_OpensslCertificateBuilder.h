@@ -33,6 +33,14 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 
 /*
  * Class:     br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder
+ * Method:    _init
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__I
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder
  * Method:    _delete
  * Signature: ()V
  */
