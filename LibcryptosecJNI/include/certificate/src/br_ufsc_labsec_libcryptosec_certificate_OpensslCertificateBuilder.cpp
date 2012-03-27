@@ -25,8 +25,6 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 		Util::throwNewException(env, "EncodeException", ex.getMessage());
 		return 0;
 	}
-
-
 }
 
 JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init___3B(JNIEnv* env, jobject obj, jbyteArray _derEncoded)
@@ -42,6 +40,12 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 		Util::throwNewException(env, "EncodeException", ex.getMessage());
 		return 0;
 	}
+}
+
+JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__I(JNIEnv* env, jobject obj, jint _certificateRequestReference)
+{
+	CertificateRequest* request = (CertificateRequest*)_certificateRequestReference;
+	return (jint) new CertificateBuilder(*request);
 }
 
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setSerialNumber__J(JNIEnv* env, jobject obj, jlong _serialNumber)

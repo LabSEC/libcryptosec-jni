@@ -3,6 +3,7 @@
 #include <vector>
 #include <jni.h>
 #include <libcryptosec/DynamicEngine.h>
+#include <libcryptosec/Engines.h>
 #include "util/Util.h"
 
 std::vector<std::pair<std::string, std::string> > convertCommandArray(JNIEnv* env, jobjectArray jcommandarray)
@@ -45,6 +46,13 @@ std::vector<std::pair<std::string, std::string> > convertCommandArray(JNIEnv* en
 
 jint Java_br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine__1init(JNIEnv* env, jobject obj, jstring _enginePath, jstring _engineId, jobjectArray _commands)
 {
+
+	if(!engine_suport_loaded)
+	{
+		Engines::loadDynamicEngineSupport();
+		engine_suport_loaded = true;
+	}
+
 	/*
 	 * Conversão
 	 */
