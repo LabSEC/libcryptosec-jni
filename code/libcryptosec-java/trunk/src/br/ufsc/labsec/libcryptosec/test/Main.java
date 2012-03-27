@@ -29,7 +29,9 @@ import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequenceEntryType;
 public class Main {
 
 	//Load the library
-
+	static {
+		System.load("/home/lucasgm/workspaces/workspace-sgc/LibcryptosecJNI/Debug/libLibcryptosecJNI");			
+	}
 		
 		
 	/**

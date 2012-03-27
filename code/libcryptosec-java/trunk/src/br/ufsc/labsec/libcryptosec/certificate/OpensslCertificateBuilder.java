@@ -24,6 +24,7 @@ public class OpensslCertificateBuilder extends JniObject {
 	private native int _init();
 	private native int _init(String pemEncoded);
 	private native int _init(byte[] derEncoded);
+	private native int _init(int certificateRequestReference);
 	
 	/*
 	 * Destructor
@@ -89,6 +90,10 @@ public class OpensslCertificateBuilder extends JniObject {
 	public OpensslCertificateBuilder(byte[] derEncoded) throws EncodeException
 	{
 		this.reference = _init(derEncoded);
+	}
+	
+	public OpensslCertificateBuilder(OpensslCertificateRequest certificateRequest) {
+		this.reference = _init(certificateRequest.getReference());
 	}
 	
 	/*
