@@ -9,6 +9,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import br.ufsc.labsec.libcryptosec.engine.OpensslEngineCommand;
+import br.ufsc.labsec.libcryptosec.exceptions.AsymmetricKeyException;
+import br.ufsc.labsec.libcryptosec.exceptions.EncodeException;
 import br.ufsc.labsec.libcryptosec.keys.OpensslKeyFactory;
 import br.ufsc.labsec.libcryptosec.keys.OpensslKeyPair;
 import br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey;
@@ -94,12 +96,30 @@ public class LibcryptosecJavaTest {
 	
 	public static OpensslPublicKey getPublicKey()
 	{
-		return keyPair.getPublicKey();
+		try {
+			return keyPair.getPublicKey();
+		} catch (AsymmetricKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EncodeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static OpensslPrivateKey getPrivateKey()
 	{
-		return keyPair.getPrivateKey();
+		try {
+			return keyPair.getPrivateKey();
+		} catch (AsymmetricKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EncodeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static String getPemEncodedCertificate()

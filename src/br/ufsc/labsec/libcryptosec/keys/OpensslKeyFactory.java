@@ -27,7 +27,7 @@ public class OpensslKeyFactory {
 		return instanece;
 	}
 	
-	public OpensslKeyPair getKeyPair(String keyId)
+	public OpensslKeyPair getKeyPair(String keyId) throws EngineException
 	{
 		return new OpensslKeyPair(this.engine, keyId);
 	}

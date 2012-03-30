@@ -1,6 +1,9 @@
 package br.ufsc.labsec.libcryptosec.keys;
 
 import br.ufsc.labsec.libcryptosec.engine.OpensslDynamicEngine;
+import br.ufsc.labsec.libcryptosec.exceptions.AsymmetricKeyException;
+import br.ufsc.labsec.libcryptosec.exceptions.EncodeException;
+import br.ufsc.labsec.libcryptosec.exceptions.EngineException;
 import br.ufsc.labsec.libcryptosec.jni.JniObject;
 
 public class OpensslKeyPair extends JniObject {
@@ -10,17 +13,17 @@ public class OpensslKeyPair extends JniObject {
 	private native int _getPublicKey();
 	private native int _getPrivateKey();
 	
-	public OpensslKeyPair(OpensslDynamicEngine engine, String keyId)
+	public OpensslKeyPair(OpensslDynamicEngine engine, String keyId) throws EngineException
 	{
 		this.reference = _init(engine.getReference(), keyId);
 	}
 	
-	public OpensslPrivateKey getPrivateKey()
+	public OpensslPrivateKey getPrivateKey() throws AsymmetricKeyException, EncodeException
 	{
 		return new OpensslPrivateKey(_getPrivateKey());
 	}
 	
-	public OpensslPublicKey getPublicKey()
+	public OpensslPublicKey getPublicKey() throws AsymmetricKeyException, EncodeException
 	{
 		return new OpensslPublicKey(_getPublicKey());
 	}
