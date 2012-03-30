@@ -12,14 +12,13 @@ jint Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1in
 	try{
 		std::string pemEncoded = Util::jstringToString(env, _pemEncoded);
 		CertificateRequest* request = new CertificateRequest(pemEncoded);
+		return (jint) request;
 	}
 	catch(EncodeException& ex)
 	{
 		Util::throwNewException(env, "EncodeException", ex.getMessage());
 		return 0;
 	}
-
-	return (jint) request;
 }
 
 jint Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1init___3B(JNIEnv* env, jobject obj, jbyteArray _derEncoded)
@@ -27,6 +26,7 @@ jint Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1in
 	try{
 		ByteArray derEncoded = Util::jbytearrayToByteArray(env, _derEncoded);
 		CertificateRequest* request = new CertificateRequest(derEncoded);
+		return (jint) request;
 	}
 	catch(EncodeException& ex)
 	{
@@ -34,7 +34,6 @@ jint Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1in
 		return 0;
 	}
 
-	return (jint) request;
 }
 
 jint Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1init__(JNIEnv* env, jobject jobject)
