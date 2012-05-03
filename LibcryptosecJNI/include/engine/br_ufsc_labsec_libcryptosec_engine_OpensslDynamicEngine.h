@@ -7,9 +7,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-bool engine_suport_loaded = false;
-
 /*
  * Class:     br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine
  * Method:    _init

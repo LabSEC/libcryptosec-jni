@@ -135,6 +135,14 @@ JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1sign
   (JNIEnv *, jobject, jint, jstring);
 
+/*
+ * Class:     br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder
+ * Method:    _addExtension
+ * Signature: (Ljava/lang/String;Z[B)V
+ */
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1addExtension
+  (JNIEnv *, jobject, jstring, jboolean, jbyteArray);
+
 #ifdef __cplusplus
 }
 #endif
