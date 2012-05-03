@@ -157,7 +157,7 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1addExtension(JNIEnv* env, jobject obj, jstring _oid, jboolean _isCritical, jbyteArray _value)
 {
 	std::string oid = Util::jstringToString(env, _oid);
-	bool isCritial = (bool)_isCritical;
+	bool isCritical = (bool)_isCritical;
 	ByteArray value = Util::jbytearrayToByteArray(env, _value);
 	
 	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
@@ -170,7 +170,6 @@ JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 	catch(CertificationException& ex)
 	{
 		Util::throwNewException(env, "CertificationException", ex.getMessage());
-		return 0;
 	}
 
 }
