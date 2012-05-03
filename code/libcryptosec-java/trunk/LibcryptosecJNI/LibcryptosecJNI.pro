@@ -5,6 +5,7 @@
 TEMPLATE = app
 TARGET = 
 LIBS += -lcryptosec -lc
+CXXFLAGS += -fpermissive
 DEPENDPATH += . \
               include/certificate \
               include/crl \
@@ -20,7 +21,7 @@ DEPENDPATH += . \
               include/keys/src \
               include/signer/src \
               include/x509/src
-INCLUDEPATH += . include
+INCLUDEPATH += . include /usr/lib/jvm/jdk1.7.0_04/include/ /usr/lib/jvm/jdk1.7.0_04/include/linux
 
 # Input
 HEADERS += include/certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.h \

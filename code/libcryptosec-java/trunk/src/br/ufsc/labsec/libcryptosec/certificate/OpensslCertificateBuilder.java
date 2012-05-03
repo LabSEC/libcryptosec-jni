@@ -2,6 +2,7 @@ package br.ufsc.labsec.libcryptosec.certificate;
 
 import java.math.BigInteger;
 import java.security.PublicKey;
+import java.security.cert.X509Extension;
 
 import br.ufsc.labsec.libcryptosec.digester.OpensslMessageDigestAlgorithm;
 import br.ufsc.labsec.libcryptosec.exceptions.AsymmetricKeyException;
@@ -74,6 +75,8 @@ public class OpensslCertificateBuilder extends JniObject {
 	 * Returns a reference to an Libcryptosec Certificate object
 	 */
 	private native int _sign(int keyReference, String hashAlgorithm);
+	
+	private native void _addExtension(String oid, boolean isCritical, byte[] value);
 	
 	/*
 	 * Constructors
@@ -168,15 +171,17 @@ public class OpensslCertificateBuilder extends JniObject {
 		_delete();
 	}
 	
+void addExtension(String oid, boolean isCritical, byte[] value) throws CertificationException
+{
+    _addExtension(oid, isCritical, value);
+}
+	
 //	void setExtensions(X509Extension extension)
 //	{
 //		
 //	}
 	
-//	void addExtension(X509Extension extension) throws CertificationException
-//	{
-//
-//	}
+
 	
 //	void addExtensions(X509Extension extension) throws CertificationException
 //	{
