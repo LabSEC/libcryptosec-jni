@@ -5,6 +5,7 @@
 #include <libcryptosec/DynamicEngine.h>
 #include <libcryptosec/Engines.h>
 #include "util/Util.h"
+#include <pthread.h>
 
 std::vector<std::pair<std::string, std::string> > convertCommandArray(JNIEnv* env, jobjectArray jcommandarray)
 {
@@ -47,11 +48,10 @@ std::vector<std::pair<std::string, std::string> > convertCommandArray(JNIEnv* en
 jint Java_br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine__1init(JNIEnv* env, jobject obj, jstring _enginePath, jstring _engineId, jobjectArray _commands)
 {
 
-	if(!engine_suport_loaded)
-	{
-		Engines::loadDynamicEngineSupport();
-		engine_suport_loaded = true;
-	}
+	/*
+	 * A Libcryptosec deve garantir que a engine não seja carregada mais de uma vez?
+	 */
+	Engines::loadDynamicEngineSupport();
 
 	/*
 	 * Conversão
