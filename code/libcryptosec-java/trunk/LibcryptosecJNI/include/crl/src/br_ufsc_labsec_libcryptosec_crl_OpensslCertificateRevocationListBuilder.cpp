@@ -132,6 +132,26 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
 	builder->setVersion(_version);
 }
 
+void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1addExtension(JNIEnv* env, jobject obj, jstring _oid, jboolean _isCritical, jbyteArray _value)
+{
+        std::string oid = Util::jstringToString(env, _oid);
+        bool isCritical = (bool)_isCritical;
+        ByteArray value = Util::jbytearrayToByteArray(env, _value);
+
+        CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+
+        try
+        {
+                Extension ext(oid, isCritical, Base64::encode(value));
+                builder->addExtension(ext);
+        }
+        catch(CertificationException& ex)
+        {
+                Util::throwNewException(env, "CertificationException", ex.getMessage());
+        }
+
+}
+
 jint Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1sign(JNIEnv *env, jobject obj, jint _privateKeyReferenece, jstring _messageDigestAlgorithmString)
 {
 	std::string messageDigestAlgorithmString = Util::jstringToString(env, _messageDigestAlgorithmString);

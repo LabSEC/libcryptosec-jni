@@ -1,4 +1,4 @@
-#include "certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.h""
+#include "certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.h"
 #include <jni.h>
 #include <libcryptosec/certificate/Certificate.h>
 #include "util/Util.h"

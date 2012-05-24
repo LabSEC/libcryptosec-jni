@@ -49,6 +49,8 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 	 */
 	private native void _addRevokedCertificates(int[] revokedCertificateReferences);
 	
+	private native void _addExtension(String oid, boolean isCritical, byte[] value);
+
 	/*
 	 * @param privateKeyReference A reference to a Libcryptosec's PrivateKey object 
 	 */
@@ -125,6 +127,12 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 		}
 		_addRevokedCertificates(revokedCertificatesReferences);
 	}
+
+	public void addExtension(String oid, boolean isCritical, byte[] value) throws CertificationException
+	{
+        	_addExtension(oid, isCritical, value);
+	}
+
 	
 	/*
 	 * Sign

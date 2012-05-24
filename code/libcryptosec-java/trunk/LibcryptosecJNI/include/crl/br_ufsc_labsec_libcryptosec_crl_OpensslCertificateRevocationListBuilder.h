@@ -105,6 +105,14 @@ JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRe
 
 /*
  * Class:     br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder
+ * Method:    _addExtension
+ * Signature: (Ljava/lang/String;Z[B)V
+ */
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1addExtension
+  (JNIEnv *, jobject, jstring, jboolean, jbyteArray);
+
+/*
+ * Class:     br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder
  * Method:    _sign
  * Signature: (ILjava/lang/String;)I
  */
