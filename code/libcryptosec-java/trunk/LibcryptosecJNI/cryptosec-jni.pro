@@ -20,7 +20,7 @@ DEPENDPATH += . \
               include/keys/src \
               include/signer/src \
               include/x509/src
-INCLUDEPATH += . include /usr/lib/jvm/java-7-openjdk-i386/include /usr/lib/jvm/java-7-openjdk-i386/include/linux
+INCLUDEPATH += . include /usr/lib/jvm/java-7-oracle/include /usr/lib/jvm/java-7-oracle/include/linux
 
 # Input
 HEADERS += include/certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.h \
