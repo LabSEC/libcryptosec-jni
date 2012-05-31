@@ -1,23 +1,37 @@
 package br.ufsc.labsec.libcryptosec.crl;
 
-public enum OpensslRevokedCertificateReasonCode {
-	UNSPECIFIED("UNSPECIFIED"),
-	KEY_COMPROMISE("KEY_COMPROMISE"),
-	CA_COMPROMISE("CA_COMPROMISE"),
-	AFFILIATION_CHANGED("AFFILIATION_CHANGED"),
-	SUPER_SEDED("SUPER_SEDED"),
-	CESSATION_OF_OPERATION("CESSATION_OF_OPERATION"),
-	CERTIFICATE_HOLD("CERTIFICATE_HOLD"),
-	PRIVILEGE_WITH_DRAWN("PRIVILEGE_WITH_DRAWN"),
-	AACOMPROMISE("AACOMPROMISE");
-	
-	private String _reasonCode;
+import java.util.HashMap;
 
-	OpensslRevokedCertificateReasonCode(String reasonCode){
-		_reasonCode = reasonCode;
+public enum OpensslRevokedCertificateReasonCode {
+	UNSPECIFIED(0),
+	KEY_COMPROMISE(1),
+	CA_COMPROMISE(2),
+	AFFILIATION_CHANGED(3),
+	SUPER_SEDED(4),
+	CESSATION_OF_OPERATION(5),
+	CERTIFICATE_HOLD(6),
+	PRIVILEGE_WITH_DRAWN(9),
+	AACOMPROMISE(10);
+
+    private static HashMap<Integer, OpensslRevokedCertificateReasonCode> reasonCodeById = new HashMap<Integer, OpensslRevokedCertificateReasonCode>();
+    static {
+        for (OpensslRevokedCertificateReasonCode reasonCode : OpensslRevokedCertificateReasonCode.values()) {
+            reasonCodeById.put(reasonCode.getId(), reasonCode);
+        }
+    }
+    
+    private int _id;
+
+	OpensslRevokedCertificateReasonCode(int id){
+	    _id = id;
 	}
 
-	public String getName() {
-	    return _reasonCode;
+	public int getId() {
+	    return _id;
+	}
+	
+	public static OpensslRevokedCertificateReasonCode getReasonById(int id) {
+	    OpensslRevokedCertificateReasonCode reasonCode = reasonCodeById.get(id);
+        return reasonCode;
 	}
 }
