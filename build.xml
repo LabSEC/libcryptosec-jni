@@ -8,69 +8,38 @@
 	<property name="build" location="bin"/>
     <property name="include" location="LibcryptosecJNI/include"/>
  
-    <!-- classpath setup 
+    <!-- classpath setup -->
     <path id="classpath">
     	<fileset dir="src/br/ufsc/labsec/libcryptosec">
 			<include name="**/*.java" />
 		</fileset>		
-    </path>
- -->
-	<target name="javah">
-		
-		<!-- Certificate -->
-		<javah classpath="bin" destdir="${include}/certificate">	
-			<class name="br.ufsc.labsec.libcryptosec.certificate.OpensslCertificate" />
-			<class name="br.ufsc.labsec.libcryptosec.certificate.OpensslCertificateBuilder" />
-		</javah>
-				
-		<!-- CRL -->
-		<javah classpath="bin" destdir="${include}/crl">
-			<class name="br.ufsc.labsec.libcryptosec.crl.OpensslCertificateRevocationList" />
-			<class name="br.ufsc.labsec.libcryptosec.crl.OpensslCertificateRevocationListBuilder" />
-			<class name="br.ufsc.labsec.libcryptosec.crl.OpensslRevokedCertificate" />
-		</javah>
-		
-		<!-- Engine -->
-		<javah classpath="bin" destdir="${include}/engine">
-			<class name="br.ufsc.labsec.libcryptosec.engine.OpensslDynamicEngine" />
-		</javah>
-		
-		<!-- Keys-->
-		<javah classpath="bin" destdir="${include}/keys">
-			<class name="br.ufsc.labsec.libcryptosec.keys.OpensslKeyPair" />
-			<class name="br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey" />
-			<class name="br.ufsc.labsec.libcryptosec.keys.OpensslPublicKey" />
-		</javah>
-		
-		<!-- Signer -->
-		<javah classpath="bin" destdir="${include}/signer">
-			<class name="br.ufsc.labsec.libcryptosec.signer.OpensslSigner" />
-		</javah>
-		
-		<!-- x509 -->
-		<javah classpath="bin" destdir="${include}/x509">
-			<class name="br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequence" />
-		</javah>		
-		
-	</target>
+    </path>	
 	
     <!-- Targets -->
     <target name="init">
 		<tstamp/>
 		<pathconvert pathsep=" " property="echo.classpath" refid="classpath"></pathconvert>
+    	<exec executable="sh" outputproperty="classes">
+    		<arg line="find_classnames.sh ${echo.classpath}" />
+    	</exec>
 		<echo>message="classpath: ${echo.classpath}"</echo>
-		<echo>message="class: ${class}"</echo>
+    	<echo>message="classpath: ${classes}"</echo>
     </target>
  
-    <target name="compile" depends="init" description="compile the source">
+	<target name="compile-java" depends="init" description="compile java">
+		<mkdir dir="${build}" />
+		<javac srcdir="${src}" destdir="${build}" />
+	</target>
+	
+    <target name="compile" depends="compile-java" description="compile the source">
     	<!--javah-->
 		<mkdir dir="${include}"/>
-		<javah destdir="${include}" class="${class}" classpath="bin"/>
+		<javah destdir="${include}" class="${classes}" classpath="bin"/>
     </target>
  
     <target name="dist" depends="compile" description="generate the distribution" >
        <!--make .so-->
-              <exec executable="make" dir="natives" failonerror="true"/>
+       <exec executable="qmake" dir="LibcryptosecJNI" failonerror="true"/>
     </target>
  
     <target name="clean" description="clean up" >
