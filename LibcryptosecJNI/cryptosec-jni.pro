@@ -20,7 +20,7 @@ DEPENDPATH += . \
               include/keys/src \
               include/signer/src \
               include/x509/src
-INCLUDEPATH += . include /usr/lib/jvm/java-7-oracle/include /usr/lib/jvm/java-7-oracle/include/linux
+INCLUDEPATH += . include /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.79/include /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.79/include/linux /usr/java/jdk1.7.0_79/include/
 
 # Input
 HEADERS += include/certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.h \
@@ -37,15 +37,15 @@ HEADERS += include/certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCe
            include/signer/br_ufsc_labsec_libcryptosec_signer_OpensslSigner.h \
            include/util/Util.h \
            include/x509/br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence.h
-SOURCES += include/certificate/src/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.cpp \
-           include/certificate/src/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder.cpp \
-           include/certificate/src/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest.cpp \
-           include/crl/src/br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList.cpp \
-           include/crl/src/br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder.cpp \
-           include/crl/src/br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate.cpp \
-           include/engine/src/br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine.cpp \
-           include/keys/src/br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair.cpp \
-           include/keys/src/br_ufsc_labsec_libcryptosec_keys_OpensslPrivateKey.cpp \
-           include/keys/src/br_ufsc_labsec_libcryptosec_keys_OpensslPublicKey.cpp \
-           include/signer/src/br_ufsc_labsec_libcryptosec_signer_OpensslSigner.cpp \
-           include/x509/src/br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence.cpp
+SOURCES += include/certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate.cpp \
+           include/certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder.cpp \
+           include/certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest.cpp \
+           include/crl/br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList.cpp \
+           include/crl/br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder.cpp \
+           include/crl/br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate.cpp \
+           include/engine/br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine.cpp \
+           include/keys/br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair.cpp \
+           include/keys/br_ufsc_labsec_libcryptosec_keys_OpensslPrivateKey.cpp \
+           include/keys/br_ufsc_labsec_libcryptosec_keys_OpensslPublicKey.cpp \
+           include/signer/br_ufsc_labsec_libcryptosec_signer_OpensslSigner.cpp \
+           include/x509/br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence.cpp
