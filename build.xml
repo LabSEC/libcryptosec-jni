@@ -6,6 +6,7 @@
     <!-- Global Properties -->
     <property name="project" value="libcryptosec-jni" />
     <property name="version" value="1.1.0" />
+    <property name="build" value="build" />
     <property name="dist" value="${project}-${version}" />
     <property name="zipfile" value="${dist}.zip" />
 
@@ -21,7 +22,8 @@
     </target>
 
     <target name="build" depends="init">
-        <javac srcdir="src" destdir="build" debug="on" />
+        <mkdir dir="${build}" />
+        <javac srcdir="src" destdir="${build}" debug="on" />
     </target>
 
     <target name="dist" depends="build">
@@ -30,7 +32,7 @@
         <jar jarfile="${dist}/src.jar" basedir="src"
             excludes="**/*.jar, **/*.class, .classpath, .project"
             />
-        <jar jarfile="${dist}/${project}.jar" basedir="build"
+        <jar jarfile="${dist}/${project}.jar" basedir="${build}"
             excludes="**/*.jar, **/*.java, .classpath, .project, build.xml"
             />
     </target>
@@ -40,6 +42,7 @@
     </target>
 
     <target name="clean">
+        <delete dir="${build}" quiet="true" />
         <delete dir="${dist}" quiet="true" />
         <delete file="${zipfile}" quiet="true" />
     </target>
