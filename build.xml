@@ -7,6 +7,7 @@
     <property name="project" value="libcryptosec-jni" />
     <property name="version" value="1.1.0" />
     <property name="build" value="build" />
+    <property name="lib" value="lib" />
     <property name="dist" value="${project}-${version}" />
     <property name="zipfile" value="${dist}.zip" />
 
@@ -24,6 +25,14 @@
     <target name="build" depends="init">
         <mkdir dir="${build}" />
         <javac srcdir="src" destdir="${build}" debug="on" />
+    </target>
+
+    <target name="lib" depends="init">
+        <mkdir dir="${lib}" />
+        <exec dir="${lib}" executable="cmake">
+            <arg value="../include" />
+        </exec>
+        <exec dir="${lib}" executable="make" />
     </target>
 
     <target name="dist" depends="build">
