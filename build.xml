@@ -7,7 +7,7 @@
     <property name="project" value="libcryptosec-jni" />
     <property name="version" value="1.1.0" />
     <property name="build" value="build" />
-    <property name="lib" value="lib" />
+    <property name="include" value="include" />
     <property name="dist" value="${project}-${version}" />
     <property name="zipfile" value="${dist}.zip" />
 
@@ -27,15 +27,25 @@
         <javac srcdir="src" destdir="${build}" debug="on" />
     </target>
 
-    <target name="lib" depends="init">
-        <mkdir dir="${lib}" />
-        <exec dir="${lib}" executable="cmake">
-            <arg value="../include" />
+    <target name="include" depends="build">
+        <mkdir dir="${include}" />
+        <pathconvert property="classlist" refid="classpath" pathsep="," />
+        <exec executable="sed" inputstring="${classlist}" outputproperty="classes">
+
+            <!-- Remove base path from class path list -->
+            <arg line='-e "s|${user.dir}/src/||g"' />
+
+            <!-- Remove .java extension from files -->
+            <arg line='-e "s|\.java||g"' />
+
+            <!-- Replace slashes with dots -->
+            <arg line='-e "s|/|.|g"' />
         </exec>
-        <exec dir="${lib}" executable="make" />
+
+        <javah destdir="${include}" classpath="${build}" class="${classes}" verbose="on" />
     </target>
 
-    <target name="dist" depends="build">
+    <target name="dist" depends="include">
         <delete dir="${dist}" />
         <mkdir dir="${dist}" />
         <jar jarfile="${dist}/src.jar" basedir="src"
@@ -52,6 +62,7 @@
 
     <target name="clean">
         <delete dir="${build}" quiet="true" />
+        <delete dir="${include}" quiet="true" />
         <delete dir="${dist}" quiet="true" />
         <delete file="${zipfile}" quiet="true" />
     </target>
