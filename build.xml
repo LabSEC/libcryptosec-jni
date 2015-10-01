@@ -22,14 +22,19 @@
         <tstamp/>
     </target>
 
+    <!-- Compiles .java files into .class files -->
     <target name="build" depends="init">
         <mkdir dir="${build}" />
-        <javac srcdir="src" destdir="${build}" debug="on" />
+        <javac srcdir="src" destdir="${build}" debug="on" includeantruntime="on" target="1.7" />
     </target>
 
+    <!-- Generates headers based on .class files and compile .so -->
     <target name="include" depends="build">
         <mkdir dir="${include}" />
+        <!-- Create class list, by joining classpath with comma -->
         <pathconvert property="classlist" refid="classpath" pathsep="," />
+
+        <!-- Class list sanitization, to convert into class names -->
         <exec executable="sed" inputstring="${classlist}" outputproperty="classes">
 
             <!-- Remove base path from class path list -->
@@ -50,22 +55,32 @@
         <exec executable="make" dir="${include}" />
     </target>
 
+    <!-- Generate distribution directory with jar and lib -->
     <target name="dist" depends="include">
         <delete dir="${dist}" />
         <mkdir dir="${dist}" />
+
+        <!-- Generate jar files, src containing source code and ${project} containing compiled code -->
         <jar jarfile="${dist}/src.jar" basedir="src"
             excludes="**/*.jar, **/*.class, .classpath, .project"
             />
         <jar jarfile="${dist}/${project}.jar" basedir="${build}"
             excludes="**/*.jar, **/*.java, .classpath, .project, build.xml"
             />
+
+        <!-- Copy generated shared object -->
         <copy file="${include}/libcryptosec_jni.so" todir="${dist}" />
     </target>
 
+    <!-- zip distribution directory -->
     <target name="zip" depends="dist">
         <zip zipfile="${zipfile}" basedir="." includes="${dist}/**" />
     </target>
 
+    <!-- Clean leftovers directories.
+         This was CAREFULLY CRAFTED not to have any exotic deletion paths.
+         Files are only generated on discardable directories for easy cleaning.
+         DO NOT HURT THIS MOTTO or I will personally murder your cat. -->
     <target name="clean">
         <delete dir="${build}" quiet="true" />
         <delete dir="${include}" quiet="true" />
