@@ -1,4 +1,4 @@
-#include "../br_ufsc_labsec_libcryptosec_signer_OpensslSigner.h"
+#include "br_ufsc_labsec_libcryptosec_signer_OpensslSigner.h"
 #include <libcryptosec/Signer.h>
 #include <libcryptosec/PublicKey.h>
 #include <libcryptosec/PrivateKey.h>

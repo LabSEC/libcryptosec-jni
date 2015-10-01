@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 find_package(JNI REQUIRED)
 find_package(LibCryptoSEC REQUIRED)
 
-include_directories(${CMAKE_SOURCE_DIR}/../include ${JNI_INCLUDE_DIRS} ${LIBCRYPTOSEC_INCLUDE_DIR})
+include_directories(${CMAKE_SOURCE_DIR} ../include ${JNI_INCLUDE_DIRS} ${LIBCRYPTOSEC_INCLUDE_DIR})
 
 if (JNI_FOUND)
     message (STATUS "JNI_INCLUDE_DIRS=${JNI_INCLUDE_DIRS}")

@@ -1,4 +1,4 @@
-#include "certificate/br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder.h"
+#include "br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder.h"
 #include <jni.h>
 #include <libcryptosec/DateTime.h>
 #include <libcryptosec/PublicKey.h>

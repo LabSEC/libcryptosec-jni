@@ -1,4 +1,4 @@
-#include "crl/br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate.h"
+#include "br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate.h"
 #include <string>
 #include <libcryptosec/certificate/RevokedCertificate.h>
 #include <libcryptosec/DateTime.h>

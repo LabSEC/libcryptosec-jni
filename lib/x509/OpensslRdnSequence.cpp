@@ -1,4 +1,4 @@
-#include "x509/br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence.h"
+#include "br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence.h"
 #include <jni.h>
 #include <libcryptosec/certificate/RDNSequence.h>
 #include "util/Util.h"

@@ -1,4 +1,4 @@
-#include "engine/br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine.h"
+#include "br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine.h"
 #include <string>
 #include <vector>
 #include <jni.h>

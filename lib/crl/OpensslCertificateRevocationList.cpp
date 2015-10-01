@@ -1,4 +1,4 @@
-#include "crl/br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList.h"
+#include "br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList.h"
 #include <libcryptosec/certificate/CertificateRevocationList.h>
 #include "util/Util.h"
 
