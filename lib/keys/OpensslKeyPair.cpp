@@ -7,12 +7,12 @@
 JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1init(JNIEnv* env, jobject obj, jint _engineReference, jstring _keyId)
 {
 	std::string keyId(env->GetStringUTFChars(_keyId, 0));
-	DynamicEngine* engine = (DynamicEngine*)_engineReference;
+	DynamicEngine* engine = reinterpret_cast<DynamicEngine*>(_engineReference);
 
 	try
 	{
 		KeyPair* kp = new KeyPair(engine, keyId);
-		return (jint)kp;
+		return reinterpret_cast<jint>(kp);
 	}
 	catch(EngineException& ex)
 	{
@@ -26,7 +26,7 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1ge
 {
 	try
 	{
-		return (jint)Util::getInstance<KeyPair*>(env, obj)->getPublicKey();
+		return reinterpret_cast<jint>(Util::getInstance<KeyPair*>(env, obj)->getPublicKey());
 	}
 	catch(AsymmetricKeyException& ex)
 	{
@@ -44,7 +44,7 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1ge
 {
 	try
 	{
-		return (jint)Util::getInstance<KeyPair*>(env, obj)->getPrivateKey();
+		return reinterpret_cast<jint>(Util::getInstance<KeyPair*>(env, obj)->getPrivateKey());
 	}
 	catch(AsymmetricKeyException& ex)
 	{
