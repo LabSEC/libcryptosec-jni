@@ -42,7 +42,12 @@
             <arg line='-e "s|/|.|g"' />
         </exec>
 
-        <javah destdir="${include}" classpath="${build}" class="${classes}" verbose="on" />
+        <!-- Generate header files from JNI classes -->
+        <javah destdir="${include}" classpath="${build}" class="${classes}" />
+
+        <!-- Run cmake && make to build the shared object -->
+        <exec executable="cmake" dir="${include}"><arg line="../lib" /></exec>
+        <exec executable="make" dir="${include}" />
     </target>
 
     <target name="dist" depends="include">
@@ -54,6 +59,7 @@
         <jar jarfile="${dist}/${project}.jar" basedir="${build}"
             excludes="**/*.jar, **/*.java, .classpath, .project, build.xml"
             />
+        <copy file="${include}/libcryptosec_jni.so" todir="${dist}" />
     </target>
 
     <target name="zip" depends="dist">
