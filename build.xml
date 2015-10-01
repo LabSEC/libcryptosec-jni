@@ -25,7 +25,7 @@
     <!-- Compiles .java files into .class files -->
     <target name="build" depends="init">
         <mkdir dir="${build}" />
-        <javac srcdir="src" destdir="${build}" debug="on" includeantruntime="on" target="1.7" />
+        <javac srcdir="src" destdir="${build}" includeantruntime="on" />
     </target>
 
     <!-- Generates headers based on .class files and compile .so -->
