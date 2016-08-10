@@ -4,10 +4,10 @@
 #include <libcryptosec/DateTime.h>
 #include "util/Util.h"
 
-jint Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1init(JNIEnv *env, jobject obj)
+jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1init(JNIEnv *env, jobject obj)
 {
 	RevokedCertificate* cert = new RevokedCertificate();
-	return (jint)cert;
+	return (jlong)cert;
 }
 
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setRevocationDate(JNIEnv *env, jobject obj, jstring _dateTime)

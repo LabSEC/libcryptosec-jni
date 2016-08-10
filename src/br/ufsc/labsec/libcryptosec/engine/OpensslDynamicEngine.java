@@ -5,10 +5,10 @@ import br.ufsc.labsec.libcryptosec.jni.JniObject;
 
 public class OpensslDynamicEngine extends JniObject {
 
-	private native int _init(String enginePath, String engineId, OpensslEngineCommand[] commands);
+	private native long _init(String enginePath, String engineId, OpensslEngineCommand[] commands);
 	private native void _delete();
 	
-	public OpensslDynamicEngine(int reference) {
+	public OpensslDynamicEngine(long reference) {
 		super(reference);
 	}
 	

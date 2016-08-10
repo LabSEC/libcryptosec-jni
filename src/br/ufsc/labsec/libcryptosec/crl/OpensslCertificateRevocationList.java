@@ -12,7 +12,7 @@ public class OpensslCertificateRevocationList extends JniObject {
 	private native String _getPemEncoded();
 	private native byte[] _getDerEncoded();
 	
-	public OpensslCertificateRevocationList(int reference) {
+	public OpensslCertificateRevocationList(long reference) {
 		super(reference);
 	}
 	
