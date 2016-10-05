@@ -21,10 +21,10 @@ public class OpensslCertificateBuilder extends JniObject {
 	/*
 	 * Construtores
 	 */
-	private native int _init();
-	private native int _init(String pemEncoded);
-	private native int _init(byte[] derEncoded);
-	private native int _init(int certificateRequestReference);
+	private native long _init();
+	private native long _init(String pemEncoded);
+	private native long _init(byte[] derEncoded);
+	private native long _init(long certificateRequestReference);
 	
 	/*
 	 * Destructor
@@ -45,12 +45,12 @@ public class OpensslCertificateBuilder extends JniObject {
 	/*
 	 * @param subjectReference A reference to a Libcryptosec's RDNSequence object
 	 */
-	private native void _setSubject(int subjectReference);
+	private native void _setSubject(long subjectReference);
 	
 	/*
 	 * @param issuerReference A reference to a Libcryptosec's RDNSequence object
 	 */
-	private native void _setIssuer(int issuerReference);
+	private native void _setIssuer(long issuerReference);
 	
 	/*
 	 * DateTime
@@ -62,18 +62,18 @@ public class OpensslCertificateBuilder extends JniObject {
 	 * Builds a Libcryptosec PublicKey object with encodedKey argument, sets it as 
 	 * certificate's public key and returns it's reference, to be destroyed after it's usage.
 	 */
-	private native int _setPublicKey(String publicKeyPemEncoded);
-	private native int _setPublicKey(byte[] publicKeyDerEncoded);
+	private native long _setPublicKey(String publicKeyPemEncoded);
+	private native long _setPublicKey(byte[] publicKeyDerEncoded);
 	
 	/*
 	 * Sets the referenced Libcryptosec's PublicKey object as certificate's public key.
 	 */
-	private native void _setPublicKey(int publicKeyReference);
+	private native void _setPublicKey(long publicKeyReference);
 	
 	/*
 	 * Returns a reference to an Libcryptosec Certificate object
 	 */
-	private native int _sign(int keyReference, String hashAlgorithm);
+	private native long _sign(long keyReference, String hashAlgorithm);
 	
 	private native void _addExtension(String oid, boolean isCritical, byte[] value);
 	

@@ -15,9 +15,9 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 	/*
 	 * Build a Libcryptosec's CertificateRevocationListBuilder object and returns its reference
 	 */
-	private native int _init();
-	private native int _init(String pemEncoded);
-	private native int _init(byte[] derEncoded);
+	private native long _init();
+	private native long _init(String pemEncoded);
+	private native long _init(byte[] derEncoded);
 	
 	/*
 	 * Destructor
@@ -31,7 +31,7 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 	/*
 	 * @param issuerReference A reference to a Libcryptosec's RDNSequence object
  	 */
-	private native void _setIssuer(int issuerReference);
+	private native void _setIssuer(long issuerReference);
 	
 	/*
 	 * DateTime
@@ -42,19 +42,19 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 	/*
 	 * @param revokedCertificateReference A reference to a Libcryptosec's RevokedCertificate object
 	 */
-	private native void _addRevokedCertificate(int revokedCertificateReference);
+	private native void _addRevokedCertificate(long revokedCertificateReference);
 	
 	/*
 	 * @param revokedCertificateReferences An array of references to Libcryptosec's RevokedCertificate objects
 	 */
-	private native void _addRevokedCertificates(int[] revokedCertificateReferences);
+	private native void _addRevokedCertificates(long[] revokedCertificateReferences);
 	
 	private native void _addExtension(String oid, boolean isCritical, byte[] value);
 
 	/*
 	 * @param privateKeyReference A reference to a Libcryptosec's PrivateKey object 
 	 */
-	private native int _sign(int privateKeyReference, String messageDigestAlgorithm);
+	private native long _sign(long privateKeyReference, String messageDigestAlgorithm);
 	
 	
 	/*
@@ -120,7 +120,7 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 	
 	public void addRevokedCertificates(OpensslRevokedCertificate[] revokedCertificates) throws CertificationException {
 		int size = revokedCertificates.length;
-		int[] revokedCertificatesReferences = new int[size];
+		long[] revokedCertificatesReferences = new long[size];
 		for(int i = 0; i < revokedCertificates.length; i++)
 		{
 			revokedCertificatesReferences[i] = revokedCertificates[i].getReference();

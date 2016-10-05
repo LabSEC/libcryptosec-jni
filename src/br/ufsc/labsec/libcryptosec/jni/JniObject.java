@@ -2,21 +2,21 @@ package br.ufsc.labsec.libcryptosec.jni;
 
 public abstract class JniObject {
 		
-	private native void _delete(int reference);
+	private native void _delete(long reference);
 	
-	protected int reference;
+	protected long reference;
 	
 	public JniObject(){
 		
 	}
 	
-	public JniObject(int reference){
+	public JniObject(long reference){
 		this.reference = reference;
 	}
 	
 	public abstract void delete();
 	
-	public int getReference(){
+	public long getReference(){
 		return this.reference;
 	}
 	
