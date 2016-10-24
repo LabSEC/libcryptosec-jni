@@ -18,8 +18,8 @@ public:
 	template<class T>
 	static T getInstance(JNIEnv* env, jobject obj) {
 		jclass obj_class = env->GetObjectClass(obj);
-		jfieldID fid = env->GetFieldID(obj_class, "reference", "I");
-		void* keyPairReference = reinterpret_cast<void*>(env->GetIntField(obj, fid));
+		jfieldID fid = env->GetFieldID(obj_class, "reference", "J");
+		void* keyPairReference = reinterpret_cast<void*>(env->GetLongField(obj_class, fid));
 		return (T) keyPairReference;
 	}
 
