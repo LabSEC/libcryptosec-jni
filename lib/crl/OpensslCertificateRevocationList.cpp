@@ -2,9 +2,13 @@
 #include <libcryptosec/certificate/CertificateRevocationList.h>
 #include "util/Util.h"
 
+// FIXME: find a way to make this global variable unnecessary
+// (i.e, fix Util::getInstance in 64 bit machines)
+CertificateRevocationList* certRevocationInstance;
+
 jstring Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1getPemEncoded(JNIEnv* env, jobject obj)
 {
-	CertificateRevocationList* crl = Util::getInstance<CertificateRevocationList*>(env, obj);
+	CertificateRevocationList* crl = certRevocationInstance;//Util::getInstance<CertificateRevocationList*>(env, obj);
 	std::string data;
 	try
 	{
@@ -19,7 +23,7 @@ jstring Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1
 
 jbyteArray Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1getDerEncoded(JNIEnv* env, jobject obj)
 {
-	CertificateRevocationList* crl = Util::getInstance<CertificateRevocationList*>(env, obj);
+	CertificateRevocationList* crl = certRevocationInstance;//Util::getInstance<CertificateRevocationList*>(env, obj);
 	ByteArray data;
 	try
 	{
@@ -35,4 +39,9 @@ jbyteArray Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1delete(JNIEnv* env, jobject obj)
 {
 	Util::deleteInstance<CertificateRevocationList*>(env, obj);
+}
+
+void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1init(JNIEnv* env, jobject obj, jlong reference)
+{
+	certRevocationInstance = (CertificateRevocationList*) reference;
 }
