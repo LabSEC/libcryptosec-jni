@@ -5,7 +5,7 @@
 
 jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1init__(JNIEnv* env, jobject obj)
 {
-	return (jlong) new CertificateRevocationListBuilder();
+	return jlong( new CertificateRevocationListBuilder());
 }
 
 jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1init__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _crlPemEncoded)
@@ -15,7 +15,7 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 	try
 	{
 		CertificateRevocationListBuilder* builder = new CertificateRevocationListBuilder(crlPemEncoded);
-		return (jlong)builder;
+		return jlong(builder);
 	}
 	catch(EncodeException& ex)
 	{
@@ -30,7 +30,7 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 	try
 	{
 		CertificateRevocationListBuilder* builder = new CertificateRevocationListBuilder(data);
-		return (jlong)builder;
+		return jlong(builder);
 	}
 	catch(EncodeException& ex)
 	{
@@ -161,7 +161,7 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 
 	try{
 		CertificateRevocationList* crl = builder->sign(*privateKey, messageDigestAlgorithm);
-		return (jlong)crl;
+		return jlong(crl);
 	}
 	catch(CertificationException& ex)
 	{

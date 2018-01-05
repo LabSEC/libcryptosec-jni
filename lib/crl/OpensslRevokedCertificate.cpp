@@ -7,7 +7,7 @@
 jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1init(JNIEnv *env, jobject obj)
 {
 	RevokedCertificate* cert = new RevokedCertificate();
-	return (jlong)cert;
+	return jlong(cert);
 }
 
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setRevocationDate(JNIEnv *env, jobject obj, jstring _dateTime)

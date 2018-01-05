@@ -12,7 +12,7 @@ jlong Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1i
 	try{
 		std::string pemEncoded = Util::jstringToString(env, _pemEncoded);
 		CertificateRequest* request = new CertificateRequest(pemEncoded);
-		return (jlong) request;
+		return jlong( request);
 	}
 	catch(EncodeException& ex)
 	{
@@ -26,7 +26,7 @@ jlong Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1i
 	try{
 		ByteArray derEncoded = Util::jbytearrayToByteArray(env, _derEncoded);
 		CertificateRequest* request = new CertificateRequest(derEncoded);
-		return (jlong) request;
+		return jlong( request);
 	}
 	catch(EncodeException& ex)
 	{
@@ -38,5 +38,5 @@ jlong Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1i
 
 jlong Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateRequest__1init__(JNIEnv* env, jobject jobject)
 {
-	return (jlong) new CertificateRequest();
+	return jlong( new CertificateRequest());
 }

@@ -5,7 +5,7 @@
 
 jlong Java_br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence__1init(JNIEnv* env, jobject obj)
 {
-	return (jlong) new RDNSequence();
+	return jlong(new RDNSequence());
 }
 
 void Java_br_ufsc_labsec_libcryptosec_x509_OpensslRdnSequence__1addEntry__Ljava_lang_String_2Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _entryTypeString, jstring _entryValue)

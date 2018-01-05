@@ -12,7 +12,7 @@ JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1i
 	try
 	{
 		KeyPair* kp = new KeyPair(engine, keyId);
-		return reinterpret_cast<jlong>(kp);
+		return jlong(kp);
 	}
 	catch(EngineException& ex)
 	{
@@ -26,7 +26,7 @@ JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1g
 {
 	try
 	{
-		return reinterpret_cast<jlong>(Util::getInstance<KeyPair*>(env, obj)->getPublicKey());
+		return jlong(Util::getInstance<KeyPair*>(env, obj)->getPublicKey());
 	}
 	catch(AsymmetricKeyException& ex)
 	{
@@ -44,7 +44,7 @@ JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_keys_OpensslKeyPair__1g
 {
 	try
 	{
-		return reinterpret_cast<jlong>(Util::getInstance<KeyPair*>(env, obj)->getPrivateKey());
+		return jlong(Util::getInstance<KeyPair*>(env, obj)->getPrivateKey());
 	}
 	catch(AsymmetricKeyException& ex)
 	{
