@@ -140,7 +140,9 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 	public OpensslCertificateRevocationList sign(OpensslPrivateKey privateKey, OpensslMessageDigestAlgorithm messageDigestAlgorithm) 
 			throws CertificationException 
 	{
-		return new OpensslCertificateRevocationList(_sign(privateKey.getReference(), messageDigestAlgorithm.toString()));
+		long crlAddress = _sign(privateKey.getReference(), messageDigestAlgorithm.toString());
+		OpensslCertificateRevocationList ret = new OpensslCertificateRevocationList(crlAddress);
+		return ret;
 	}
 	
 	

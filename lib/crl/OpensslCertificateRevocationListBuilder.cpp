@@ -2,10 +2,13 @@
 #include <libcryptosec/certificate/CertificateRevocationListBuilder.h>
 #include "util/Util.h"
 
+CertificateRevocationListBuilder *builder;
 
 jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1init__(JNIEnv* env, jobject obj)
 {
-	return (jlong) new CertificateRevocationListBuilder();
+	builder = new CertificateRevocationListBuilder();
+	return jlong( builder);
+	// return jlong( new CertificateRevocationListBuilder());
 }
 
 jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1init__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _crlPemEncoded)
@@ -15,7 +18,7 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 	try
 	{
 		CertificateRevocationListBuilder* builder = new CertificateRevocationListBuilder(crlPemEncoded);
-		return (jlong)builder;
+		return jlong(builder);
 	}
 	catch(EncodeException& ex)
 	{
@@ -29,8 +32,8 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 	ByteArray data = Util::jbytearrayToByteArray(env, _crlDerEncoded);
 	try
 	{
-		CertificateRevocationListBuilder* builder = new CertificateRevocationListBuilder(data);
-		return (jlong)builder;
+		CertificateRevocationListBuilder* new_builder = new CertificateRevocationListBuilder(data);
+		return jlong(new_builder);
 	}
 	catch(EncodeException& ex)
 	{
@@ -40,11 +43,13 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1setIssuer(JNIEnv* env, jobject obj, jlong _rdnSequenceReference)
 {
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
+
 	RDNSequence* rdnSequence = (RDNSequence*)_rdnSequenceReference;
 	try
 	{
-		builder->setIssuer(*rdnSequence);
+		new_builder->setIssuer(*rdnSequence);
 	}
 	catch(CertificationException& ex)
 	{
@@ -55,10 +60,11 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1addRevokedCertificate(JNIEnv* env, jobject obj, jlong _reference)
 {
 	RevokedCertificate* revokedCertificate = (RevokedCertificate*)_reference;
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
 	try
 	{
-		builder->addRevokedCertificate(*revokedCertificate);
+		new_builder->addRevokedCertificate(*revokedCertificate);
 	}
 	catch(CertificationException& ex)
 	{
@@ -69,10 +75,12 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1addRevokedCertificates(JNIEnv* env, jobject obj, jlongArray _references)
 {
 	std::vector<RevokedCertificate> revokedCertificates = Util::getObjectVector<RevokedCertificate>(env, _references);
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
+
 	try
 	{
-		builder->addRevokedCertificates(revokedCertificates);
+		new_builder->addRevokedCertificates(revokedCertificates);
 	}
 	catch(CertificationException& ex)
 	{
@@ -84,26 +92,30 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
 {
 	std::string dateTimeString = Util::jstringToString(env, _dateTimeString);
 	DateTime dateTime(dateTimeString);
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
-	builder->setNextUpdate(dateTime);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
+
+	new_builder->setNextUpdate(dateTime);
 }
 
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1setLastUpdate(JNIEnv* env, jobject obj, jstring _dateTimeString)
 {
 	std::string dateTimeString = Util::jstringToString(env, _dateTimeString);
 	DateTime dateTime(dateTimeString);
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
-	builder->setLastUpdate(dateTime);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
+	new_builder->setLastUpdate(dateTime);
 }
 
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1setSerialNumber__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _serialNumberString)
 {
 	std::string serialNumberString = Util::jstringToString(env, _serialNumberString);
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	// CertificateRevocationListBuilder* new_builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
 	try
 	{
 		BigInteger serialNumber(serialNumberString);
-		builder->setSerialNumber(serialNumber);
+		new_builder->setSerialNumber(serialNumber);
 	}
 	catch(BigIntegerException& ex)
 	{
@@ -116,10 +128,12 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
 }
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1setSerialNumber__J(JNIEnv* env, jobject obj, jlong _serialNumber)
 {
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
+
 	try
 	{
-		builder->setSerialNumber(_serialNumber);
+		new_builder->setSerialNumber(_serialNumber);
 	}
 	catch(CertificationException& ex)
 	{
@@ -128,8 +142,9 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
 }
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1setVersion(JNIEnv* env, jobject obj, jlong _version)
 {
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
-	builder->setVersion(_version);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
+	new_builder->setVersion(_version);
 }
 
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1addExtension(JNIEnv* env, jobject obj, jstring _oid, jboolean _isCritical, jbyteArray _value)
@@ -138,12 +153,14 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
         bool isCritical = (bool)_isCritical;
         ByteArray value = Util::jbytearrayToByteArray(env, _value);
 
-        CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+        // CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+    	CertificateRevocationListBuilder* new_builder = builder;
+
 
         try
         {
                 Extension ext(oid, isCritical, Base64::encode(value));
-                builder->addExtension(ext);
+                new_builder->addExtension(ext);
         }
         catch(CertificationException& ex)
         {
@@ -157,11 +174,13 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 	std::string messageDigestAlgorithmString = Util::jstringToString(env, _messageDigestAlgorithmString);
 	MessageDigest::Algorithm messageDigestAlgorithm = Util::stringToMessageDigestAlgorithm(messageDigestAlgorithmString);
 	PrivateKey* privateKey = (PrivateKey*)_privateKeyReferenece;
-	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	// CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
+	CertificateRevocationListBuilder* new_builder = builder;
 
 	try{
-		CertificateRevocationList* crl = builder->sign(*privateKey, messageDigestAlgorithm);
-		return (jlong)crl;
+		CertificateRevocationList* crl = new_builder->sign(*privateKey, messageDigestAlgorithm);
+		std::cout << "crl builder:: crl address: " << crl << std::endl;
+		return jlong(crl);
 	}
 	catch(CertificationException& ex)
 	{
@@ -172,5 +191,6 @@ jlong Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuild
 
 void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1delete(JNIEnv *env, jobject obj)
 {
-	Util::deleteInstance<CertificateRevocationListBuilder*>(env, obj);
+	// Util::deleteInstance<CertificateRevocationListBuilder*>(env, obj);
+	delete builder;
 }

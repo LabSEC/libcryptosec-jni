@@ -1,3 +1,0 @@
-/home/guilherme/libcryptosec-jni/include/CMakeFiles/edit_cache.dir
-/home/guilherme/libcryptosec-jni/include/CMakeFiles/rebuild_cache.dir
-/home/guilherme/libcryptosec-jni/include/CMakeFiles/cryptosec_jni.dir
