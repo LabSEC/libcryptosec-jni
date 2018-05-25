@@ -3,7 +3,6 @@ project(libcryptosec_jni)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-# REMOVE -fpermissive as soon as possible, currently code does not build with it.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -O2 -Wall -W -D_REENTRANT -fPIC")
 set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -pipe -O2 -Wall -W -D_REENTRANT")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pipe -O2 -Wall -W -D_REENTRANT")
@@ -11,9 +10,11 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pipe -O2 -Wall -W -D_REEN
 
 
 message(STATUS ${CMAKE_SHARED_LINKER_FLAGS})
-find_package(JNI REQUIRED)
-set(LIBCRYPTOSEC_INCLUDE_DIR /home/montezano/git/libcryptosec/include)
-set(LIBCRYPTOSEC_LIBRARIES /home/montezano/git/libcryptosec/libcryptosec.so)
+# Fix the find_package for Libcryptosec or find a better solution other than a static path for include and libraries
+# find_package(JNI REQUIRED)
+set(LIBCRYPTOSEC_INCLUDE_DIR /usr/include/libcryptosec/include)
+# might as well be /usr/lib64/libcryptosec.so
+set(LIBCRYPTOSEC_LIBRARIES /usr/lib/libcryptosec.so)
 
 # Searches first at local, then at generated headers, so that wrong headers are easily overridable.
 # If javah generates anything wrongly, just create if correctly by hand and place on . directory.
