@@ -42,7 +42,7 @@ JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCert
 	}
 }
 
-JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__I(JNIEnv* env, jobject obj, jlong _certificateRequestReference)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__J(JNIEnv* env, jobject obj, jlong _certificateRequestReference)
 {
 	CertificateRequest* request = (CertificateRequest*)_certificateRequestReference;
 	return jlong( new CertificateBuilder(*request));
@@ -159,7 +159,7 @@ JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 	std::string oid = Util::jstringToString(env, _oid);
 	bool isCritical = (bool)_isCritical;
 	ByteArray value = Util::jbytearrayToByteArray(env, _value);
-	
+
 	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 
 	try
