@@ -8,10 +8,10 @@ import br.ufsc.labsec.libcryptosec.jni.JniObject;
 
 public class OpensslKeyPair extends JniObject {
 	
-	private native int _init(int engineReference, String keyId);
+	private native long _init(long engineReference, String keyId);
 	private native void _delete();
-	private native int _getPublicKey();
-	private native int _getPrivateKey();
+	private native long _getPublicKey();
+	private native long _getPrivateKey();
 	
 	public OpensslKeyPair(OpensslDynamicEngine engine, String keyId) throws EngineException
 	{

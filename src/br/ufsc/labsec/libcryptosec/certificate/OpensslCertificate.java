@@ -13,7 +13,7 @@ public class OpensslCertificate extends JniObject {
 	private native String _getPemEncoded();
 	private native byte[] _getDerEncoded();
 	
-	public OpensslCertificate(int reference) {
+	public OpensslCertificate(long reference) {
 		super(reference);
 	}
 	

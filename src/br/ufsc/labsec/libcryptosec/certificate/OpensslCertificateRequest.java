@@ -5,9 +5,9 @@ import br.ufsc.labsec.libcryptosec.jni.JniObject;
 public class OpensslCertificateRequest extends JniObject {
 
 	private native void _delete();
-	private native int _init();
-	private native int _init(String pem);
-	private native int _init(byte[] der);
+	private native long _init();
+	private native long _init(String pem);
+	private native long _init(byte[] der);
 	
 	
 	public OpensslCertificateRequest(){

@@ -5,20 +5,20 @@
 #include <libcryptosec/certificate/CertificateBuilder.h>
 #include "util/Util.h"
 
-JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__(JNIEnv* env, jobject obj)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__(JNIEnv* env, jobject obj)
 {
 	CertificateBuilder* builder = new CertificateBuilder();
-	return (jint)builder;
+	return jlong(builder);
 }
 
-JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _pemEncoded)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _pemEncoded)
 {
 	std::string certRequestPemEncoded = Util::jstringToString(env, _pemEncoded);
 
 	try
 	{
 		CertificateBuilder* builder = new CertificateBuilder(certRequestPemEncoded);
-		return (jint)builder;
+		return jlong(builder);
 	}
 	catch(EncodeException& ex)
 	{
@@ -27,13 +27,13 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 	}
 }
 
-JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init___3B(JNIEnv* env, jobject obj, jbyteArray _derEncoded)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init___3B(JNIEnv* env, jobject obj, jbyteArray _derEncoded)
 {
 	ByteArray data = Util::jbytearrayToByteArray(env, _derEncoded);
 	try
 	{
 		CertificateBuilder* builder = new CertificateBuilder(data);
-		return (jint)builder;
+		return jlong(builder);
 	}
 	catch(EncodeException& ex)
 	{
@@ -42,25 +42,25 @@ JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 	}
 }
 
-JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__I(JNIEnv* env, jobject obj, jint _certificateRequestReference)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__J(JNIEnv* env, jobject obj, jlong _certificateRequestReference)
 {
 	CertificateRequest* request = (CertificateRequest*)_certificateRequestReference;
-	return (jint) new CertificateBuilder(*request);
+	return jlong( new CertificateBuilder(*request));
 }
 
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setSerialNumber__J(JNIEnv* env, jobject obj, jlong _serialNumber)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
-	builder->setSerialNumber(_serialNumber);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	cert_builder->setSerialNumber(_serialNumber);
 }
 
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setSerialNumber__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _serialNumber)
 {
 	std::string serialNumber = Util::jstringToString(env, _serialNumber);
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	try
 	{
-		builder->setSerialNumber(BigInteger(serialNumber));
+		cert_builder->setSerialNumber(BigInteger(serialNumber));
 	}
 	catch(BigIntegerException& ex)
 	{
@@ -70,77 +70,77 @@ JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setVersion(JNIEnv* env, jobject obj, jlong _version)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
-	builder->setVersion(_version);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	cert_builder->setVersion(_version);
 }
 
-JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setSubject(JNIEnv* env, jobject obj, jint _rdnSequenceReference)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setSubject(JNIEnv* env, jobject obj, jlong _rdnSequenceReference)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	RDNSequence* rdnSequence = (RDNSequence*)_rdnSequenceReference;
-	builder->setSubject(*rdnSequence);
+	cert_builder->setSubject(*rdnSequence);
 }
 
-JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setIssuer(JNIEnv* env, jobject obj, jint _rdnSequenceReference)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setIssuer(JNIEnv* env, jobject obj, jlong _rdnSequenceReference)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	RDNSequence* rdnSequence = (RDNSequence*)_rdnSequenceReference;
-	builder->setIssuer(*rdnSequence);
+	cert_builder->setIssuer(*rdnSequence);
 }
 
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setNotBefore(JNIEnv* env, jobject obj, jstring _notBefore)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	std::string notBefore = Util::jstringToString(env, _notBefore);
 	DateTime dateTime(notBefore);
-	builder->setNotBefore(dateTime);
+	cert_builder->setNotBefore(dateTime);
 }
 
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setNotAfter(JNIEnv* env, jobject obj, jstring _notAfter)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	std::string notAfter = Util::jstringToString(env, _notAfter);
 	DateTime dateTime(notAfter);
-	builder->setNotAfter(dateTime);
+	cert_builder->setNotAfter(dateTime);
 }
 
-JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setPublicKey__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _publicKeyPemEncoded)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setPublicKey__Ljava_lang_String_2(JNIEnv* env, jobject obj, jstring _publicKeyPemEncoded)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	std::string publicKeyPemEncoded = Util::jstringToString(env, _publicKeyPemEncoded);
 	PublicKey* pkey = new PublicKey(publicKeyPemEncoded);
-	builder->setPublicKey(*pkey);
-	return (jint)pkey;
+	cert_builder->setPublicKey(*pkey);
+	return jlong(pkey);
 }
 
-JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setPublicKey___3B(JNIEnv* env, jobject obj, jbyteArray _publicKeyDerEncoded)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setPublicKey___3B(JNIEnv* env, jobject obj, jbyteArray _publicKeyDerEncoded)
 {
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	ByteArray data = Util::jbytearrayToByteArray(env, _publicKeyDerEncoded);
 	PublicKey* pkey = new PublicKey(data);
-	builder->setPublicKey(*pkey);
-	return (jint)pkey;
+	cert_builder->setPublicKey(*pkey);
+	return jlong(pkey);
 }
 
-JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setPublicKey__I(JNIEnv* env, jobject obj, jint publicKeyReference)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setPublicKey__J(JNIEnv* env, jobject obj, jlong publicKeyReference)
 {
 	PublicKey* pkey = (PublicKey*)publicKeyReference;
 	Util::getInstance<CertificateBuilder*>(env, obj)->setPublicKey(*pkey);
 }
 
-JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1sign(JNIEnv* env, jobject obj, jint _keyReference, jstring _messageDigestAlgorithm)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1sign(JNIEnv* env, jobject obj, jlong _keyReference, jstring _messageDigestAlgorithm)
 {
 	std::string messageDigestAlgorithm = Util::jstringToString(env, _messageDigestAlgorithm);
 	MessageDigest::Algorithm algorithm = Util::stringToMessageDigestAlgorithm(messageDigestAlgorithm);
 
 	PrivateKey* pkey = (PrivateKey*)_keyReference;
 
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 
 	try
 	{
-		Certificate* signedCert = builder->sign(*pkey, algorithm);
-		return (jint)signedCert;
+		Certificate* signedCert = cert_builder->sign(*pkey, algorithm);
+		return jlong(signedCert);
 	}
 	catch(CertificationException& ex)
 	{
@@ -159,13 +159,13 @@ JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 	std::string oid = Util::jstringToString(env, _oid);
 	bool isCritical = (bool)_isCritical;
 	ByteArray value = Util::jbytearrayToByteArray(env, _value);
-	
-	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+
+	CertificateBuilder* cert_builder = Util::getInstance<CertificateBuilder*>(env, obj);
 
 	try
 	{
 		Extension ext(oid, isCritical, Base64::encode(value));
-		builder->addExtension(ext);
+		cert_builder->addExtension(ext);
 	}
 	catch(CertificationException& ex)
 	{

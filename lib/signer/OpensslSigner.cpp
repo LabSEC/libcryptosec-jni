@@ -5,7 +5,7 @@
 #include <libcryptosec/ByteArray.h>
 #include "util/Util.h"
 
-jbyteArray Java_br_ufsc_labsec_libcryptosec_signer_OpensslSigner__1sign(JNIEnv* env, jclass cls, jint _key, jbyteArray _hash, jstring _hashAlgorithm)
+jbyteArray Java_br_ufsc_labsec_libcryptosec_signer_OpensslSigner__1sign(JNIEnv* env, jclass cls, jlong _key, jbyteArray _hash, jstring _hashAlgorithm)
 {
 	PrivateKey* key = (PrivateKey*)_key;
 	ByteArray hash = Util::jbytearrayToByteArray(env, _hash);
@@ -23,7 +23,7 @@ jbyteArray Java_br_ufsc_labsec_libcryptosec_signer_OpensslSigner__1sign(JNIEnv* 
 	}
 }
 
-jboolean Java_br_ufsc_labsec_libcryptosec_signer_OpensslSigner__1verify(JNIEnv* env, jclass cls, jint _key, jbyteArray _signature, jbyteArray _hash, jstring _hashAlgorithm)
+jboolean Java_br_ufsc_labsec_libcryptosec_signer_OpensslSigner__1verify(JNIEnv* env, jclass cls, jlong _key, jbyteArray _signature, jbyteArray _hash, jstring _hashAlgorithm)
 {
 	PublicKey* key = (PublicKey*)_key;
 	ByteArray signature = Util::jbytearrayToByteArray(env, _signature);
