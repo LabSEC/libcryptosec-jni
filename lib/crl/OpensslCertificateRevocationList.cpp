@@ -2,16 +2,15 @@
 #include <libcryptosec/certificate/CertificateRevocationList.h>
 #include "util/Util.h"
 
-CertificateRevocationList* crl;
-
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1init(JNIEnv* env, jobject obj, jlong reference)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1init(JNIEnv* env, jobject obj, jlong reference)
 {
-	crl = (CertificateRevocationList*)reference;
+	CertificateRevocationList* crl = (CertificateRevocationList*)reference;
+	CertificateRevocationList* new_crl = new CertificateRevocationList(*crl);
 }
 
-jstring Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1getPemEncoded(JNIEnv* env, jobject obj)
+JNIEXPORT jstring JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1getPemEncoded(JNIEnv* env, jobject obj)
 {
-	// CertificateRevocationList* crl = Util::getInstance<CertificateRevocationList*>(env, obj);
+	CertificateRevocationList* crl = Util::getInstance<CertificateRevocationList*>(env, obj);
 	std::string data;
 	try
 	{
@@ -24,9 +23,9 @@ jstring Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1
 	return env->NewStringUTF(data.c_str());
 }
 
-jbyteArray Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1getDerEncoded(JNIEnv* env, jobject obj)
+JNIEXPORT jbyteArray JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1getDerEncoded(JNIEnv* env, jobject obj)
 {
-	// CertificateRevocationList* crl = Util::getInstance<CertificateRevocationList*>(env, obj);
+	CertificateRevocationList* crl = Util::getInstance<CertificateRevocationList*>(env, obj);
 	ByteArray data;
 	try
 	{
@@ -39,8 +38,7 @@ jbyteArray Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList
 	return Util::byteArrayTojbytearray(env, data);
 }
 
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1delete(JNIEnv* env, jobject obj)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationList__1delete(JNIEnv* env, jobject obj)
 {
-	// Util::deleteInstance<CertificateRevocationList*>(env, obj);
-	delete crl;
+	Util::deleteInstance<CertificateRevocationList*>(env, obj);
 }
