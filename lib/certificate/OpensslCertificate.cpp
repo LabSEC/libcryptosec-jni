@@ -2,6 +2,7 @@
 #include <jni.h>
 #include <libcryptosec/certificate/Certificate.h>
 #include "util/Util.h"
+#include <iostream>
 
 JNIEXPORT jstring JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificate__1getPemEncoded(JNIEnv* env, jobject obj)
 {

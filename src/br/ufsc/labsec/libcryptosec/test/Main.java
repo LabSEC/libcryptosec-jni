@@ -30,7 +30,7 @@ public class Main {
 
 	//Load the library
 	static {
-		System.load("/home/fabio/Desktop/Hawa/libcryptosec-jni/libcryptosec-jni-1.1.0/libcryptosec_jni.so");			
+		System.load("/home/lucasgm/workspaces/workspace-sgc/LibcryptosecJNI/Debug/libLibcryptosecJNI");			
 	}
 		
 		
@@ -38,9 +38,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String enginePath = "/etc/hawa/engines/openhsmd-ca.so";
+		String enginePath = "/home/lucasgm/engine_openhsmd.so";
 		String engineId = "openhsmd";
-		OpensslEngineCommand command = new OpensslEngineCommand("ADDRESS_CONN", "192.168.66.48");
+		OpensslEngineCommand command = new OpensslEngineCommand("ADDRESS_CONN", "150.162.56.239");
 		OpensslEngineCommand[] commands = {command};
 
 		String keyId = "chave-2048";

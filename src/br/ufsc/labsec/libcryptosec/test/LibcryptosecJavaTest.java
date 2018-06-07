@@ -21,15 +21,15 @@ import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequenceEntryType;
 public class LibcryptosecJavaTest {
 	
 	static {
-		System.load("/home/fabio/Desktop/Hawa/libcryptosec-jni/libcryptosec-jni-1.1.0/libcryptosec_jni.so");			
+		System.load("/home/lucasgm/workspaces/workspace-sgc/LibcryptosecJNI/Debug/libLibcryptosecJNI");			
 	}
 	
 	public static OpensslRdnSequence subjectRdnSequence;
 	public static OpensslRdnSequence issuerRdnSequence;
 	public static OpensslKeyPair keyPair;
-	public static String enginePath = "/etc/hawa/engines/openhsmd-ca.so";
+	public static String enginePath = "/home/lucasgm/engine_openhsmd.so";
 	public static String engineId = "openhsmd";
-	public static OpensslEngineCommand[] commands = {new OpensslEngineCommand("ADDRESS_CONN", "192.168.66.48")};
+	public static OpensslEngineCommand[] commands = {new OpensslEngineCommand("ADDRESS_CONN", "150.162.56.239")};
 	public static String keyId = "chave-2048";
 	
 	@BeforeClass
@@ -76,9 +76,8 @@ public class LibcryptosecJavaTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		issuerRdnSequence.delete();
 		subjectRdnSequence.delete();
-		
+		issuerRdnSequence.delete();
 		keyPair.delete();
 	}
 	
