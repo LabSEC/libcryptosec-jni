@@ -63,3 +63,11 @@ include/cmake_install.cmake
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/bin/
+
+# Configuration files already in branch, but personal changes to these files shouldn't be commited.
+run.sh
+build.xml
+src/br/ufsc/labsec/libcryptosec/test/Main.java
+src/br/ufsc/labsec/libcryptosec/test/LibcryptosecJavaTest.java
+lib/CMakeLists.txt
