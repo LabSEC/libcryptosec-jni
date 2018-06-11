@@ -1,10 +1,12 @@
 package br.ufsc.labsec.libcryptosec.test;
 
-import static org.junit.Assert.*;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import br.ufsc.labsec.libcryptosec.exceptions.AsymmetricKeyException;
+import br.ufsc.labsec.libcryptosec.exceptions.EncodeException;
+import br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey;
 
 public class OpenSSLPrivateKeyTest extends LibcryptosecJavaTest {
 
@@ -19,13 +21,9 @@ public class OpenSSLPrivateKeyTest extends LibcryptosecJavaTest {
 	}
 
 	@Test
-	public void testDelete() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testOpenSSLPrivateKey() {
-		fail("Not yet implemented");
+	public void testDelete() throws AsymmetricKeyException, EncodeException {
+		OpensslPrivateKey sk = keyPair.getPrivateKey();
+		sk.delete();
 	}
 
 }

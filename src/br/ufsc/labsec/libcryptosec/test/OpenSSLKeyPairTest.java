@@ -1,39 +1,52 @@
 package br.ufsc.labsec.libcryptosec.test;
 
-import static org.junit.Assert.*;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-public class OpenSSLKeyPairTest {
+import br.ufsc.labsec.libcryptosec.exceptions.AsymmetricKeyException;
+import br.ufsc.labsec.libcryptosec.exceptions.EncodeException;
+import br.ufsc.labsec.libcryptosec.exceptions.EngineException;
+import br.ufsc.labsec.libcryptosec.keys.OpensslKeyFactory;
+import br.ufsc.labsec.libcryptosec.keys.OpensslKeyPair;
+import br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey;
+import br.ufsc.labsec.libcryptosec.keys.OpensslPublicKey;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+public class OpenSSLKeyPairTest extends LibcryptosecJavaTest{
+	protected OpensslKeyPair keyPair;
+	
+	@Before
+	public void setUpBefore() throws Exception {
+		keyPair = OpensslKeyFactory.getInstance(enginePath, engineId, commands).getKeyPair(keyId);
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Test
-	public void testDelete() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testOpenSSLKeyPair() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetPrivateKey() {
-		fail("Not yet implemented");
+	@After
+	public void tearDown() throws Exception {
+		keyPair.delete();
 	}
 
 	@Test
-	public void testGetPublicKey() {
-		fail("Not yet implemented");
+	public void testDelete() throws EngineException {
+		OpensslKeyPair keyPair = OpensslKeyFactory.getInstance(enginePath, engineId, commands).getKeyPair(keyId);
+		keyPair.delete();
+	}
+
+	@Test
+	public void testOpenSSLKeyPair() throws EngineException {
+		OpensslKeyPair keyPair = OpensslKeyFactory.getInstance(enginePath, engineId, commands).getKeyPair(keyId);
+		keyPair.delete();
+	}
+
+	@Test
+	public void testGetPrivateKey() throws AsymmetricKeyException, EncodeException, EngineException {
+		OpensslPrivateKey privKey = keyPair.getPrivateKey();
+		privKey.delete();
+	}
+
+	@Test
+	public void testGetPublicKey() throws EngineException, AsymmetricKeyException, EncodeException {
+		OpensslPublicKey pubKey = keyPair.getPublicKey();
+		pubKey.delete();
 	}
 
 }
