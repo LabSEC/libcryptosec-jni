@@ -4,7 +4,7 @@ import br.ufsc.labsec.libcryptosec.jni.JniObject;
 
 public class OpensslRdnSequence extends JniObject {
 
-	private native int _init();
+	private native long _init();
 	private native void _delete();
 	private native void _addEntry(String entryTypeString, String value);
 	private native void _addEntry(String entryTypeString, String[] value);

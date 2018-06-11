@@ -4,13 +4,13 @@
 #include <libcryptosec/DateTime.h>
 #include "util/Util.h"
 
-jint Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1init(JNIEnv *env, jobject obj)
+JNIEXPORT jlong JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1init(JNIEnv *env, jobject obj)
 {
 	RevokedCertificate* cert = new RevokedCertificate();
-	return (jint)cert;
+	return jlong(cert);
 }
 
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setRevocationDate(JNIEnv *env, jobject obj, jstring _dateTime)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setRevocationDate(JNIEnv *env, jobject obj, jstring _dateTime)
 {
 	std::string dateTimeString = Util::jstringToString(env, _dateTime);
 	DateTime dateTime(dateTimeString);
@@ -18,7 +18,7 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setRevocat
 	revokedCertificate->setRevocationDate(dateTime);
 }
 
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setReasonCode(JNIEnv *env, jobject obj, jstring _reasonCode)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setReasonCode(JNIEnv *env, jobject obj, jstring _reasonCode)
 {
 	std::string reasonCodeString = Util::jstringToString(env, _reasonCode);
 	RevokedCertificate::ReasonCode reasonCode = Util::stringToRevokedCertificateReasonCode(reasonCodeString);
@@ -28,7 +28,7 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setReasonC
 
 
 
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setSerialNumber__Ljava_lang_String_2(JNIEnv *env, jobject obj, jstring _serialNumber)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setSerialNumber__Ljava_lang_String_2(JNIEnv *env, jobject obj, jstring _serialNumber)
 {
 	std::string serialNumberString = Util::jstringToString(env, _serialNumber);
 	BigInteger serialNumber(serialNumberString);
@@ -39,13 +39,13 @@ void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setSerialN
 
 
 
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setSerialNumber__J(JNIEnv *env, jobject obj, jlong serialNumber)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1setSerialNumber__J(JNIEnv *env, jobject obj, jlong serialNumber)
 {
 	RevokedCertificate* revokedCertificate = Util::getInstance<RevokedCertificate*>(env, obj);
 	//TODO verificar exceção BigIntegerException
 	revokedCertificate->setCertificateSerialNumber(serialNumber);
 }
 
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1delete(JNIEnv* env, jobject obj) {
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_crl_OpensslRevokedCertificate__1delete(JNIEnv* env, jobject obj) {
 	Util::deleteInstance<RevokedCertificate*>(env, obj);
 }

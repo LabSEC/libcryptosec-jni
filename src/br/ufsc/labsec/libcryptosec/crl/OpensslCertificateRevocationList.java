@@ -8,12 +8,14 @@ public class OpensslCertificateRevocationList extends JniObject {
 	/*
 	 * Destructor
 	 */
+	private native void _init(long reference);
 	private native void _delete();
 	private native String _getPemEncoded();
 	private native byte[] _getDerEncoded();
 	
-	public OpensslCertificateRevocationList(int reference) {
+	public OpensslCertificateRevocationList(long reference) {
 		super(reference);
+		_init(reference);
 	}
 	
 	public String getPemEncoded() throws EncodeException {

@@ -20,9 +20,9 @@ public enum OpensslRevokedCertificateReasonCode {
         }
     }
     
-    private int _id;
+    private int  _id;
 
-	OpensslRevokedCertificateReasonCode(int id){
+	OpensslRevokedCertificateReasonCode(int  id){
 	    _id = id;
 	}
 
@@ -30,7 +30,7 @@ public enum OpensslRevokedCertificateReasonCode {
 	    return _id;
 	}
 	
-	public static OpensslRevokedCertificateReasonCode getReasonById(int id) {
+	public static OpensslRevokedCertificateReasonCode getReasonById(int  id) {
 	    OpensslRevokedCertificateReasonCode reasonCode = reasonCodeById.get(id);
         return reasonCode;
 	}

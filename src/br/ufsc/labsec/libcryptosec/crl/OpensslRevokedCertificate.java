@@ -8,7 +8,7 @@ import br.ufsc.labsec.libcryptosec.jni.JniObject;
 
 public class OpensslRevokedCertificate extends JniObject {
 	
-	private native int _init();
+	private native long _init();
 	private native void _delete();
 	
 	private native void _setSerialNumber(long certificateSerialNumber);

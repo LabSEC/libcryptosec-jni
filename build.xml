@@ -10,10 +10,16 @@
     <property name="include" value="include" />
     <property name="dist" value="${project}-${version}" />
     <property name="zipfile" value="${dist}.zip" />
+    <property name="lib" value="lib" />
 
     <path id="classpath">
         <fileset dir="src/br/ufsc/labsec/libcryptosec">
             <include name="**/*.java" />
+        </fileset>
+    </path>
+    <path id="junit.class.path">
+        <fileset dir="${lib}">
+            <include name="**/*.jar"/>
         </fileset>
     </path>
 
@@ -25,7 +31,9 @@
     <!-- Compiles .java files into .class files -->
     <target name="build" depends="init">
         <mkdir dir="${build}" />
-        <javac srcdir="src" destdir="${build}" includeantruntime="on" />
+        <javac srcdir="src" destdir="${build}" includeantruntime="on">
+            <classpath refid="junit.class.path"/>
+        </javac>
     </target>
 
     <!-- Generates headers based on .class files and compile .so -->

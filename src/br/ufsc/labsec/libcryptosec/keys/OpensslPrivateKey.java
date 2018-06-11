@@ -6,7 +6,7 @@ public class OpensslPrivateKey extends JniObject {
 
 	private native void _delete();
 	
-	public OpensslPrivateKey(int reference) {
+	public OpensslPrivateKey(long reference) {
 		super(reference);
 	}
 

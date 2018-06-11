@@ -18,8 +18,8 @@ public:
 	template<class T>
 	static T getInstance(JNIEnv* env, jobject obj) {
 		jclass obj_class = env->GetObjectClass(obj);
-		jfieldID fid = env->GetFieldID(obj_class, "reference", "I");
-		void* keyPairReference = reinterpret_cast<void*>(env->GetIntField(obj, fid));
+		jfieldID fid = env->GetFieldID(obj_class, "reference", "J");
+		void* keyPairReference = reinterpret_cast<void*>(env->GetLongField(obj, fid));
 		return (T) keyPairReference;
 	}
 
@@ -81,30 +81,30 @@ public:
 	}
 
 	template <class T>
-	static std::vector<T> getObjectReferenceVector(JNIEnv* env, jintArray _referenceArray)
+	static std::vector<T> getObjectReferenceVector(JNIEnv* env, jlongArray _referenceArray)
 	{
 		int size = env->GetArrayLength(_referenceArray);
-		jint* references = env->GetIntArrayElements(_referenceArray, 0);
+		jlong* references = env->GetLongArrayElements(_referenceArray, 0);
 		std::vector<T> objectsReferences;
 		for(int i = 0; i < size; i++)
 		{
 			objectsReferences.push_back((T)references[i]);
 		}
-		env->ReleaseIntArrayElements(_referenceArray, references, 0);
+		env->ReleaseLongArrayElements(_referenceArray, references, 0);
 		return objectsReferences;
 	}
 
 	template <class T>
-	static std::vector<T> getObjectVector(JNIEnv* env, jintArray _referenceArray)
+	static std::vector<T> getObjectVector(JNIEnv* env, jlongArray _referenceArray)
 	{
 		int size = env->GetArrayLength(_referenceArray);
-		int* references = env->GetIntArrayElements(_referenceArray, 0);
+		jlong* references = env->GetLongArrayElements(_referenceArray, 0);
 		std::vector<T> objects;
 		for(int i = 0; i < size; i++)
 		{
 			objects.push_back(*((T*)references[i]));
 		}
-		env->ReleaseIntArrayElements(_referenceArray, references, 0);
+		env->ReleaseLongArrayElements(_referenceArray, references, 0);
 		return objects;
 	}
 
