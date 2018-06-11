@@ -41,7 +41,6 @@ public class OpensslSignerTest extends LibcryptosecJavaTest {
 			byte[] signature = OpensslSigner.sign(getPrivateKey(), data.getBytes(), OpensslMessageDigestAlgorithm.SHA1);
 			boolean verify = OpensslSigner.verify(getPublicKey(), signature, data.getBytes(), OpensslMessageDigestAlgorithm.SHA1);
 			assertTrue(verify);
-			System.out.println(getHexString(signature));
 		} catch (SignerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
