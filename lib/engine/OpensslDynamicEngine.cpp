@@ -64,7 +64,8 @@ jlong Java_br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine__1init(JNIEnv
 	{
 		DynamicEngine* engine = 0;
 		engine = new DynamicEngine(enginePath, engineId, commands);
-		return (long)engine;
+
+		return jlong(engine);
 	}
 	catch(EngineException& ex)
 	{
@@ -79,4 +80,3 @@ void Java_br_ufsc_labsec_libcryptosec_engine_OpensslDynamicEngine__1delete(JNIEn
 {
 	Util::deleteInstance<DynamicEngine*>(env, obj);
 }
-

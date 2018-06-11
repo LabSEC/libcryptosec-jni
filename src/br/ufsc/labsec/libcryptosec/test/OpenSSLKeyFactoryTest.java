@@ -1,29 +1,34 @@
 package br.ufsc.labsec.libcryptosec.test;
 
-import static org.junit.Assert.*;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-public class OpenSSLKeyFactoryTest {
+import br.ufsc.labsec.libcryptosec.exceptions.EngineException;
+import br.ufsc.labsec.libcryptosec.keys.OpensslKeyFactory;
+import br.ufsc.labsec.libcryptosec.keys.OpensslKeyPair;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+public class OpenSSLKeyFactoryTest extends LibcryptosecJavaTest{
+	
+	static OpensslKeyFactory keyFact;
+	
+	@Before
+	public void setUpBefore() {
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	@After
+	public void tearDownAfter() {
 	}
 
 	@Test
-	public void testGetInstance() {
-		fail("Not yet implemented");
+	public void testGetInstance() throws EngineException {
+		keyFact = OpensslKeyFactory.getInstance(enginePath, engineId, commands);
 	}
 
 	@Test
-	public void testGetKeyPair() {
-		fail("Not yet implemented");
+	public void testGetKeyPair() throws EngineException {
+		OpensslKeyPair keyPair = OpensslKeyFactory.getInstance(enginePath, engineId, commands).getKeyPair(keyId);
+		keyPair.delete();
 	}
 
 }
