@@ -36,14 +36,9 @@ public class OpenSSLRevokedCertificateTest extends LibcryptosecJavaTest {
 	}
 
 	@Test
-	public void testSetCertificateSerialNumberLong() {
+	public void testSetCertificateSerialNumberLong() throws BigIntegerException {
 		OpensslRevokedCertificate revoked = new OpensslRevokedCertificate();
-		try {
-			revoked.setCertificateSerialNumber(1);
-		} catch (BigIntegerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		revoked.setCertificateSerialNumber(1);
 		revoked.delete();
 	}
 

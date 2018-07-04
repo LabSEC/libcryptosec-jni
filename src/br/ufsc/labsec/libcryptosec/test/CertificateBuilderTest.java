@@ -134,7 +134,6 @@ public class CertificateBuilderTest extends LibcryptosecJavaTest {
 //			signedCert = newFilledBuilder().sign(getPrivateKey(), OpensslMessageDigestAlgorithm.SHA384);
 //			signedCert.delete();
 //			signedCert = newFilledBuilder().sign(getPrivateKey(), OpensslMessageDigestAlgorithm.SHA512);
-			signedCert.delete();
 		} catch (CertificationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
