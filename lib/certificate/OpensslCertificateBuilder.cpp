@@ -3,6 +3,7 @@
 #include <libcryptosec/DateTime.h>
 #include <libcryptosec/PublicKey.h>
 #include <libcryptosec/certificate/CertificateBuilder.h>
+#include <libcryptosec/certificate/Certificate.h>
 #include "util/Util.h"
 
 JNIEXPORT jint JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1init__(JNIEnv* env, jobject obj)
@@ -81,11 +82,25 @@ JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCerti
 	builder->setSubject(*rdnSequence);
 }
 
-JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setIssuer(JNIEnv* env, jobject obj, jint _rdnSequenceReference)
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1alterSubject(JNIEnv* env, jobject obj, jint _rdnSequenceReference)
 {
 	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
 	RDNSequence* rdnSequence = (RDNSequence*)_rdnSequenceReference;
-	builder->setIssuer(*rdnSequence);
+	try
+	{
+		builder->alterSubject(*rdnSequence);
+	}
+	catch(CertificationException& ex)
+	{
+		Util::throwNewException(env, "CertificationException", ex.getMessage());
+	}
+}
+
+JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setIssuer(JNIEnv* env, jobject obj, jint _issuerReference)
+{
+	CertificateBuilder* builder = Util::getInstance<CertificateBuilder*>(env, obj);
+	Certificate* issuer = (Certificate*)_issuerReference;
+	builder->setIssuer(issuer->getX509());
 }
 
 JNIEXPORT void JNICALL Java_br_ufsc_labsec_libcryptosec_certificate_OpensslCertificateBuilder__1setNotBefore(JNIEnv* env, jobject obj, jstring _notBefore)

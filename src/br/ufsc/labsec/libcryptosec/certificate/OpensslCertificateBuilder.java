@@ -3,6 +3,7 @@ package br.ufsc.labsec.libcryptosec.certificate;
 import java.math.BigInteger;
 import java.security.PublicKey;
 
+import br.ufsc.labsec.libcryptosec.certificate.OpensslCertificate;
 import br.ufsc.labsec.libcryptosec.digester.OpensslMessageDigestAlgorithm;
 import br.ufsc.labsec.libcryptosec.exceptions.AsymmetricKeyException;
 import br.ufsc.labsec.libcryptosec.exceptions.BigIntegerException;
@@ -47,6 +48,11 @@ public class OpensslCertificateBuilder extends JniObject {
 	 */
 	private native void _setSubject(int subjectReference);
 	
+	/*
+	 * @param subjectReference A reference to a Libcryptosec's RDNSequence object
+	 */
+	private native void _alterSubject(int subjectReference);
+
 	/*
 	 * @param issuerReference A reference to a Libcryptosec's RDNSequence object
 	 */
@@ -144,13 +150,17 @@ public class OpensslCertificateBuilder extends JniObject {
 	/*
 	 * Issuer and Subject
 	 */
-	public void setIssuer(OpensslRdnSequence issuer)
+	public void setIssuer(OpensslCertificate issuer)
 	{
 		_setIssuer(issuer.getReference());
 	}	
 	public void setSubject(OpensslRdnSequence subject)
 	{
 		_setSubject(subject.getReference());
+	}
+	public void alterSubject(OpensslRdnSequence subject)
+	{
+		_alterSubject(subject.getReference());
 	}
 	
 	/*

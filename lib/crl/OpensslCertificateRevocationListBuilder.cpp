@@ -1,4 +1,5 @@
 #include "br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder.h"
+#include <libcryptosec/certificate/Certificate.h>
 #include <libcryptosec/certificate/CertificateRevocationListBuilder.h>
 #include "util/Util.h"
 
@@ -38,13 +39,13 @@ jint Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilde
 	}
 }
 
-void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1setIssuer(JNIEnv* env, jobject obj, jint _rdnSequenceReference)
+void Java_br_ufsc_labsec_libcryptosec_crl_OpensslCertificateRevocationListBuilder__1setIssuer(JNIEnv* env, jobject obj, jint _issuerReference)
 {
 	CertificateRevocationListBuilder* builder = Util::getInstance<CertificateRevocationListBuilder*>(env, obj);
-	RDNSequence* rdnSequence = (RDNSequence*)_rdnSequenceReference;
+	Certificate* issuer = (Certificate*)_issuerReference;
 	try
 	{
-		builder->setIssuer(*rdnSequence);
+		builder->setIssuer(issuer->getX509());
 	}
 	catch(CertificationException& ex)
 	{
