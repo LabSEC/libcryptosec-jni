@@ -9,7 +9,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pipe -O2 -Wall -W -D_REEN
 # REMOVE -fpermissive as soon as possible, currently code does not build with it.
 find_package(JNI REQUIRED)
 set(LIBCRYPTOSEC_INCLUDE_DIR /usr/include)
-set(LIBCRYPTOSEC_LIBRARIES /usr/lib/libcryptosec.so.2.3.0)
+set(LIBCRYPTOSEC_LIBRARIES /usr/lib/libcryptosec.so)
 
 # Searches first at local, then at generated headers, so that wrong headers are easily overridable.
 # If javah generates anything wrongly, just create if correctly by hand and place on . directory.
