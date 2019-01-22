@@ -2,13 +2,13 @@ package br.ufsc.labsec.libcryptosec.crl;
 
 import java.math.BigInteger;
 
+import br.ufsc.labsec.libcryptosec.certificate.OpensslCertificate;
 import br.ufsc.labsec.libcryptosec.digester.OpensslMessageDigestAlgorithm;
 import br.ufsc.labsec.libcryptosec.exceptions.BigIntegerException;
 import br.ufsc.labsec.libcryptosec.exceptions.CertificationException;
 import br.ufsc.labsec.libcryptosec.exceptions.EncodeException;
 import br.ufsc.labsec.libcryptosec.jni.JniObject;
 import br.ufsc.labsec.libcryptosec.keys.OpensslPrivateKey;
-import br.ufsc.labsec.libcryptosec.x509.OpensslRdnSequence;
 
 public class OpensslCertificateRevocationListBuilder extends JniObject {
 
@@ -93,7 +93,7 @@ public class OpensslCertificateRevocationListBuilder extends JniObject {
 	/*
 	 * Issuer
 	 */
-	public void setIssuer(OpensslRdnSequence issuer) throws CertificationException {
+	public void setIssuer(OpensslCertificate issuer) throws CertificationException {
 		_setIssuer(issuer.getReference());
 	}
 	

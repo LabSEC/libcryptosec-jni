@@ -17,12 +17,14 @@
             <include name="**/*.java" />
         </fileset>
     </path>
-    <path id="junit.class.path">
-        <fileset dir="${lib}">
-            <include name="**/*.jar"/>
-        </fileset>
+	<path id="junit.class.path">
+    	<pathelement location="/usr/share/ant/lib/ant-junit4.jar"/>
+	    	<!--
+	    	<fileset dir="${lib}">
+	            <include name="*/*.jar"/>
+	        </fileset>
+	        -->
     </path>
-
     <!-- Targets -->
     <target name="init">
         <tstamp/>
